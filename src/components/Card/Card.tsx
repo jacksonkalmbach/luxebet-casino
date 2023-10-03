@@ -11,8 +11,9 @@ interface CardProps {
   tilt: "left" | "right" | "";
   suit: CardSuit;
   value: string | number;
-  isFaceUp: boolean;
+  isFaceUp?: boolean;
   absolute?: boolean;
+  isFolded?: boolean;
 }
 
 const suits = {
@@ -28,17 +29,20 @@ export default function Card({
   value,
   isFaceUp,
   absolute,
+  isFolded,
 }: CardProps) {
   return (
     <div
       className={`${
         absolute ? "absolute" : ""
-      } w-full h-full bg-white border border-gray-200 rounded shadow-xl ${
+      } w-full h-full  border border-gray-200 rounded shadow-xl ${
         tilt === "right"
           ? "rotate-[10deg]"
           : tilt === "left"
           ? "-rotate-[10deg]"
           : ""
+      } transition-all transform-origin duration-200 ${
+        isFolded ? "scale-90 bg-gray-200 opacity-80" : "bg-white"
       }`}
     >
       {isFaceUp ? (
@@ -53,12 +57,12 @@ export default function Card({
             >
               {value}
             </div>
-            <div className="text-black h-3 w-3">{suits[suit]}</div>
+            <div className="hidden text-black h-3 w-3">{suits[suit]}</div>
           </div>
           <div className="text-black w-full h-full flex justify-center items-center">
             {suits[suit]}
           </div>
-          <div className="flex flex-col self-end rotate-180 items-center">
+          <div className="hidden md:flex flex-col self-end rotate-180 items-center">
             <div
               className={`${
                 suit === "hearts" || suit === "diamonds"
@@ -68,11 +72,15 @@ export default function Card({
             >
               {value}
             </div>
-            <div className="text-black h-3 w-3">{suits[suit]}</div>
+            <div className="flex text-black h-3 w-3">{suits[suit]}</div>
           </div>
         </div>
       ) : (
-        <div className="w-full h-full bg-red-200 rounded border border-white"></div>
+        <div
+          className={`w-full h-full ${
+            !isFolded ? "bg-red-300" : "bg-red-100"
+          } rounded border border-white`}
+        ></div>
       )}
     </div>
   );

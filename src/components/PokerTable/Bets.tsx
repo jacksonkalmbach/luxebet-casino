@@ -5,11 +5,18 @@ import Bet from "../Bet/Bet";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
-import { selectUserBetPlacedTotal } from "../../store/features/game/userGameSlice";
+import {
+  selectIsUserBetPlaced,
+  selectUserBetTotal,
+} from "../../store/features/game/userGameSlice";
 
 export default function Bets() {
+  const isBetPlaced = useSelector((state: RootState) =>
+    selectIsUserBetPlaced(state)
+  );
+
   const userBetPlacedTotal = useSelector((state: RootState) =>
-    selectUserBetPlacedTotal(state)
+    selectUserBetTotal(state)
   );
 
   return (
@@ -30,7 +37,7 @@ export default function Bets() {
         <Bet amount={60} side="right" />
       </div>
       <div className="absolute left-[43%] -translate-x-1/2 -bottom-5 flex justify-center items-center">
-        {userBetPlacedTotal > 0 && <Bet amount={userBetPlacedTotal} />}
+        {isBetPlaced && <Bet amount={userBetPlacedTotal} />}
       </div>
     </div>
   );

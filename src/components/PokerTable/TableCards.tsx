@@ -4,7 +4,7 @@ import CardOutline from "../Card/CardOutline";
 
 type CardDetail = {
   suit: "hearts" | "spades" | "clubs" | "diamonds";
-  value: string;
+  value: string | number;
 };
 type CardOrEmpty = CardDetail | null;
 
@@ -13,7 +13,7 @@ const cardDetails: Record<number, CardOrEmpty> = {
   2: { suit: "clubs", value: "K" },
   3: { suit: "diamonds", value: "Q" },
   4: { suit: "spades", value: "J" },
-  5: { suit: "hearts", value: "10" },
+  5: { suit: "hearts", value: 10 },
 };
 
 export default function TableCards() {
@@ -21,16 +21,24 @@ export default function TableCards() {
     Array(5).fill(null)
   );
 
-  const dealCards = () => {
+  const dealFlopCards = () => {
     setTimeout(() => setCardsOnTable([1, null, null, null, null]), 1000);
     setTimeout(() => setCardsOnTable([1, 2, null, null, null]), 2000);
     setTimeout(() => setCardsOnTable([1, 2, 3, null, null]), 3000);
-    setTimeout(() => setCardsOnTable([1, 2, 3, 4, null]), 4000);
+  };
+
+  const dealTurnCard = () => {
+    setTimeout(() => setCardsOnTable([1, 2, 3, 4, null]), 1000);
+  };
+
+  const dealRiverCard = () => {
     setTimeout(() => setCardsOnTable([1, 2, 3, 4, 5]), 5000);
   };
 
   useEffect(() => {
-    dealCards();
+    dealFlopCards();
+    setTimeout(() => dealTurnCard(), 5000);
+    setTimeout(() => dealRiverCard(), 5000);
   }, []);
 
   return (
@@ -39,7 +47,7 @@ export default function TableCards() {
         {cardsOnTable.map((cardId, index) => {
           const card = cardId !== null ? cardDetails[cardId] : null;
           return (
-            <div className="w-20 h-28" key={index}>
+            <div className="w-8 h-12 md:w-20 md:h-28" key={index}>
               {card ? (
                 <Card
                   isFaceUp

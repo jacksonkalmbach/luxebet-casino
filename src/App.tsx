@@ -12,7 +12,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="flex bg-[#081a2f] w-screen h-screen justify-start items-center border-8 border-[#1c2e52]">
-        <div className="flex w-[20%] h-full bg-[#0a1f3b] text-white rounded-l-lg border-r border-[#1c314c] p-4 justify-center">
+        <div className="hidden md:flex w-[20%] h-full bg-[#0a1f3b] text-white rounded-l-lg border-r border-[#1c314c] p-4 justify-center">
           <div className="font-bold text-2xl">Poker Game</div>
         </div>
         <div className="flex w-full h-full p-8 bg-transparent">

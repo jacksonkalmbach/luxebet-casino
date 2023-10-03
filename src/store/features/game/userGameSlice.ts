@@ -1,21 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserGameState {
+  isUserTurn: boolean;
   userBalance: number;
   userBetTotal: number;
   userBetPlacedTotal: number;
+  isUserBetPlaced: boolean;
+  isFolded: boolean;
 }
 
 const initialState: UserGameState = {
+  isUserTurn: false,
   userBalance: 1000,
   userBetTotal: 10,
-  userBetPlacedTotal: 0,
+  userBetPlacedTotal: 10,
+  isUserBetPlaced: false,
+  isFolded: false,
 };
 
 const userGameSlice = createSlice({
   name: "userGame",
   initialState,
   reducers: {
+    setIsUserTurn(state, action: PayloadAction<boolean>) {
+      state.isUserTurn = action.payload;
+    },
     incrementUserBalanceByAmount(state, action: PayloadAction<number>) {
       state.userBalance += action.payload;
     },
@@ -37,10 +46,17 @@ const userGameSlice = createSlice({
     setUserPlacedBetTotal(state, action: PayloadAction<number>) {
       state.userBetPlacedTotal = action.payload;
     },
+    setIsBetPlaced(state, action: PayloadAction<boolean>) {
+      state.isUserBetPlaced = action.payload;
+    },
+    setIsFolded(state, action: PayloadAction<boolean>) {
+      state.isFolded = action.payload;
+    },
   },
 });
 
 export const {
+  setIsUserTurn,
   incrementUserBalanceByAmount,
   decrementUserBalanceByAmount,
   clearUserBalance,
@@ -48,13 +64,21 @@ export const {
   decrementUserBetByAmount,
   clearUserBetTotal,
   setUserPlacedBetTotal,
+  setIsBetPlaced,
+  setIsFolded,
 } = userGameSlice.actions;
 
+export const selectIsUserTurn = (state: { userGame: UserGameState }) =>
+  state.userGame.isUserTurn;
 export const selectUserBalance = (state: { userGame: UserGameState }) =>
   state.userGame.userBalance;
 export const selectUserBetTotal = (state: { userGame: UserGameState }) =>
   state.userGame.userBetTotal;
 export const selectUserBetPlacedTotal = (state: { userGame: UserGameState }) =>
   state.userGame.userBetPlacedTotal;
+export const selectIsUserBetPlaced = (state: { userGame: UserGameState }) =>
+  state.userGame.isUserBetPlaced;
+export const selectIsFolded = (state: { userGame: UserGameState }) =>
+  state.userGame.isFolded;
 
 export default userGameSlice.reducer;

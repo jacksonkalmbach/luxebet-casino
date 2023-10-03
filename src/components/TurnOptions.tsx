@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+import Button from "./ui/Button";
+
+import { Slider } from "@mui/material";
+
 import {
   decrementUserBalanceByAmount,
-  incrementUserBalanceByAmount,
   selectUserBalance,
   selectUserBetTotal,
   incrementUserBetByAmount,
   decrementUserBetByAmount,
-  clearUserBetTotal,
   setUserPlacedBetTotal,
+  setIsBetPlaced,
+  setIsFolded,
 } from "../store/features/game/userGameSlice";
 
 import { incrementPotByAmount } from "../store/features/game/potSlice";
-
-import { clearUserHand } from "../store/features/game/cardsSlice";
 import { RootState } from "../store/store";
-
-import { Slider } from "@mui/material";
-import Button from "./ui/Button";
 
 export default function TurnOptions() {
   const dispatch = useDispatch();
@@ -33,7 +32,7 @@ export default function TurnOptions() {
   );
 
   const handleUserFold = () => {
-    dispatch(clearUserHand());
+    dispatch(setIsFolded(true));
   };
 
   const handleBetIncrease = (amount: number) => {
@@ -52,9 +51,9 @@ export default function TurnOptions() {
 
   const handleSubmitBet = (amount: number) => {
     dispatch(decrementUserBalanceByAmount(amount));
-    dispatch(clearUserBetTotal());
     dispatch(incrementPotByAmount(amount));
     dispatch(setUserPlacedBetTotal(amount));
+    dispatch(setIsBetPlaced(true));
   };
 
   return (
@@ -75,7 +74,7 @@ export default function TurnOptions() {
             },
             "& .MuiSlider-thumb": {
               "&:hover, &.Mui-focusVisible": {
-                boxShadow: "0px 0px 0px 8px rgba(238, 194, 62, 0.16)", // Add a yellow focus shadow around the thumb
+                boxShadow: "0px 0px 0px 8px rgba(238, 194, 62, 0.16)",
               },
             },
           }}
