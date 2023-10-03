@@ -3,7 +3,7 @@ import CardOutline from "./Card/CardOutline";
 import Card from "./Card/Card";
 import OpposingPlayer from "./OpposingPlayer/OpposingPlayer";
 import Bet from "./Bet/Bet";
-import CardPair from "./CardPair/CardPair";
+import UserHand from "./UserHand/UserHand";
 
 const cards = {
   1: <Card isFaceUp suit="clubs" tilt="" value="4" absolute={false} />,
@@ -90,7 +90,7 @@ export default function PokerTable() {
       </div>
       <div>
         <div className="absolute -bottom-16 -left-10 w-24 h-36 flex z-10">
-          <CardPair />
+          <UserHand />
         </div>
         <div className="flex flex-col justify-center items-center text-white absolute -bottom-10 left-16 font-bold w-48 h-20 rounded-lg border-2 border-[#f3cb16] bg-[#23325c]">
           <p className="text-white font-semibold text-md">My Balance</p>

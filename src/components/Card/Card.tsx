@@ -5,10 +5,12 @@ import DiamondIcon from "../../icons/Suits/DiamondIcon";
 import HeartsIcon from "../../icons/Suits/HeartsIcon";
 import SpadesIcon from "../../icons/Suits/SpadesIcon";
 
+type CardSuit = "clubs" | "spades" | "hearts" | "diamonds";
+
 interface CardProps {
   tilt: "left" | "right" | "";
-  suit: "clubs" | "spades" | "hearts" | "diamonds";
-  value: string;
+  suit: CardSuit;
+  value: string | number;
   isFaceUp: boolean;
   absolute?: boolean;
 }
