@@ -33,7 +33,7 @@ export default function Card({
     <div
       className={`${
         absolute ? "absolute" : ""
-      } w-full h-full bg-white border border-gray-200 rounded p-2 shadow-xl ${
+      } w-full h-full bg-white border border-gray-200 rounded shadow-xl ${
         tilt === "right"
           ? "rotate-[10deg]"
           : tilt === "left"
@@ -42,7 +42,7 @@ export default function Card({
       }`}
     >
       {isFaceUp ? (
-        <div className="flex w-full h-full justify-between">
+        <div className="flex w-full h-full justify-between p-1">
           <div className="flex flex-col items-center">
             <div
               className={`${
@@ -72,7 +72,7 @@ export default function Card({
           </div>
         </div>
       ) : (
-        <div className="w-full h-full bg-red-200 rounded"></div>
+        <div className="w-full h-full bg-red-200 rounded border border-white"></div>
       )}
     </div>
   );
