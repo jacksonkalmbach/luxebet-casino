@@ -46,7 +46,7 @@ const cardsSlice = createSlice({
   },
 });
 
-export const { addCard, clearCards } = cardsSlice.actions;
+export const { addCard, clearCards, clearUserHand } = cardsSlice.actions;
 export const selectCardsOnTable = (state: { cards: CardsState }): CardType[] =>
   state.cards.cardsOnTable;
 export const selectUserHand = (state: { cards: CardsState }): CardType[] =>

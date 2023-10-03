@@ -5,10 +5,11 @@ interface OpposingPlayerProps {
   side?: "left" | "right";
   image?: string;
   name?: string;
-  cards?: {
-    suit: string;
-    value: string;
-  }[];
+  cards?:
+    | {
+        suit: "clubs" | "diamonds" | "hearts" | "spades";
+        value: string;
+      }[];
 }
 
 export default function OpposingPlayer({
@@ -27,13 +28,7 @@ export default function OpposingPlayer({
             side === "left" ? "-left-7" : "-right-7"
           } h-20 w-20 flex rounded-full bg-gray-200 border-2 border-[#f3cb16]`}
         />
-        <OpposingHand
-          side={side}
-          cards={[
-            { suit: "spades", value: "A" },
-            { suit: "clubs", value: "K" },
-          ]}
-        />
+        <OpposingHand side={side} cards={cards || []} />
         <div
           className={`flex flex-col justify-center items-center w-full ${
             side === "left" ? "ml-6" : "mr-6"
