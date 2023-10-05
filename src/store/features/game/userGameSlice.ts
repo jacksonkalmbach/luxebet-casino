@@ -10,7 +10,7 @@ interface UserGameState {
 }
 
 const initialState: UserGameState = {
-  isUserTurn: false,
+  isUserTurn: true,
   userBalance: 1000,
   userBetTotal: 10,
   userBetPlacedTotal: 10,

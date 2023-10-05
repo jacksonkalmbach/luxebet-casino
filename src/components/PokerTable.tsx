@@ -12,37 +12,46 @@ const seats = {
     className: "absolute -top-10 -left-14",
     side: "right",
     playerName: "Seb",
-    image:
-      "https://scontent.ford4-1.fna.fbcdn.net/v/t1.6435-1/49830756_10157052395161180_1806859657294118912_n.jpg?stp=dst-jpg_p480x480&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=lkjGU0N6OpIAX8NdmuG&_nc_ht=scontent.ford4-1.fna&oh=00_AfBT192_ewNW2sibZ3WJdwMqhKy4E_T6JyK3N9NDmjCNqQ&oe=65429F5F",
+    image: "https://robohash.org/5",
     cards: [],
+    isBigBlind: true,
+    isLittleBlind: false,
   },
   2: {
     className: "absolute -top-10 -right-14",
     side: "left",
     playerName: "Jackson",
-    image: "",
+    image: "https://robohash.org/1",
     cards: [],
+    isBigBlind: false,
+    isLittleBlind: true,
   },
   3: {
     className: "absolute top-[35%] -right-[25%]",
     side: "left",
-    playerName: "",
-    image: "",
+    playerName: "Chris",
+    image: "https://robohash.org/2",
     cards: [],
+    isBigBlind: false,
+    isLittleBlind: false,
   },
   4: {
     className: "absolute top-[35%] -left-[25%]",
     side: "right",
     playerName: "Parker",
-    image: "",
+    image: "https://robohash.org/3",
     cards: [],
+    isBigBlind: false,
+    isLittleBlind: false,
   },
   5: {
     className: "absolute -bottom-10 -right-10",
     side: "left",
     playerName: "Cooper",
-    image: "",
+    image: "https://robohash.org/4",
     cards: [],
+    isBigBlind: false,
+    isLittleBlind: false,
   },
 };
 
@@ -52,22 +61,26 @@ export default function PokerTable() {
       <Bets />
       <Pot />
       <TableCards />
-      <div className="absolute -top-16">
+      <div className="absolute -top-24">
         <Dealer />
       </div>
       <div>
         {Object.keys(seats).map((key) => {
           const seat = key as unknown as keyof typeof seats;
+          const { isBigBlind, isLittleBlind, side, playerName, image, cards } =
+            seats[seat];
           return (
             <div key={seat} className={seats[seat].className}>
               {seats[seat].playerName !== "" ? (
                 <OpposingPlayer
-                  side={seats[seat].side as "left" | "right"}
-                  name={seats[seat].playerName}
-                  image={seats[seat].image}
-                  cards={seats[seat].cards}
+                  side={side as "left" | "right"}
+                  name={playerName}
+                  image={image}
+                  cards={cards}
                   isFolded={false}
                   isOccupied={true}
+                  isSmallBlind={isLittleBlind}
+                  isBigBlind={isBigBlind}
                 />
               ) : (
                 <OpposingPlayer

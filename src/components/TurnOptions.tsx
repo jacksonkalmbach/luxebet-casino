@@ -14,6 +14,7 @@ import {
   setUserPlacedBetTotal,
   setIsBetPlaced,
   setIsFolded,
+  selectIsUserTurn,
 } from "../store/features/game/userGameSlice";
 
 import { incrementPotByAmount } from "../store/features/game/potSlice";
@@ -30,6 +31,7 @@ export default function TurnOptions() {
   const userBalance = useSelector((state: RootState) =>
     selectUserBalance(state)
   );
+  const isUserTurn = useSelector((state: RootState) => selectIsUserTurn(state));
 
   const handleUserFold = () => {
     dispatch(setIsFolded(true));
@@ -58,7 +60,11 @@ export default function TurnOptions() {
 
   return (
     <div className="w-full h-[10%] flex justify-center gap-3 items-center text-white absolute bottom-0 bg-[#0c2748]">
-      <Button text="-" onClick={() => handleBetDecrease(10)} />
+      <Button
+        text="-"
+        onClick={() => handleBetDecrease(10)}
+        isUserTurn={isUserTurn}
+      />
       <div className="w-1/5">
         <Slider
           defaultValue={betValue}
@@ -66,6 +72,7 @@ export default function TurnOptions() {
           aria-label="Default"
           valueLabelDisplay="auto"
           step={10}
+          disabled={!isUserTurn}
           onChange={(e, value) => setBetValue(value as number)}
           sx={{
             color: "#eec23e",
@@ -80,15 +87,32 @@ export default function TurnOptions() {
           }}
         />
       </div>
-      <Button text="+" onClick={() => handleBetIncrease(10)} />
+      <Button
+        text="+"
+        onClick={() => handleBetIncrease(10)}
+        isUserTurn={isUserTurn}
+      />
       <Button
         text={`Bet ${userBetTotal}`}
         onClick={() => handleSubmitBet(betValue)}
+        isUserTurn={isUserTurn}
       />
-      <Button text="Check" onClick={() => handleSubmitBet(0)} />
-      <Button text="Call" onClick={() => handleSubmitBet(userBetTotal)} />
-      <Button text="All In" onClick={() => handleSubmitBet(userBalance)} />
-      <Button text="Fold" onClick={handleUserFold} />
+      <Button
+        text="Check"
+        onClick={() => handleSubmitBet(0)}
+        isUserTurn={isUserTurn}
+      />
+      <Button
+        text={`Call ${800}`}
+        onClick={() => handleSubmitBet(800)}
+        isUserTurn={isUserTurn}
+      />
+      <Button
+        text="All In"
+        onClick={() => handleSubmitBet(userBalance)}
+        isUserTurn={isUserTurn}
+      />
+      <Button text="Fold" onClick={handleUserFold} isUserTurn={isUserTurn} />
     </div>
   );
 }

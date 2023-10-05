@@ -1,4 +1,7 @@
 import React from "react";
+
+import LittleBlind from "../PokerTable/Blind/LittleBlind";
+import BigBlind from "../PokerTable/Blind/BigBlind";
 import OpposingHand from "./OpposingHand";
 
 interface OpposingPlayerProps {
@@ -12,6 +15,8 @@ interface OpposingPlayerProps {
       }[];
   isFolded?: boolean;
   isOccupied?: boolean;
+  isSmallBlind?: boolean;
+  isBigBlind?: boolean;
 }
 
 export default function OpposingPlayer({
@@ -21,6 +26,8 @@ export default function OpposingPlayer({
   cards,
   isFolded,
   isOccupied,
+  isSmallBlind,
+  isBigBlind,
 }: OpposingPlayerProps) {
   return (
     <div className="w-fit h-fit flex flex-col justify-center items-center shadow-xl">
@@ -31,6 +38,14 @@ export default function OpposingPlayer({
             : ""
         }`}
       >
+        <div
+          className={`absolute -top-3 ${
+            side === "right" ? "-left-3" : "-right-3"
+          }`}
+        >
+          {isBigBlind && <BigBlind />}
+          {isSmallBlind && <LittleBlind />}
+        </div>
         {isOccupied ? (
           <img
             src={image}
@@ -55,7 +70,7 @@ export default function OpposingPlayer({
               }`}
             >
               <p className="text-white font-semibold text-sm">{name}</p>
-              <p className="text-white">$2,345</p>
+              <p className="text-white">$1,000</p>
             </div>
           </>
         )}
