@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import MatchUpOdds from "./MatchUpOdds";
+import BetSlip from "./BetSlip/BetSlip";
+import MatchUp from "./MatchUp/MatchUp";
 
 import { NFL_DATA } from "./NFL_ODDS";
-
-
 
 export default function SportMain() {
   // useEffect(() => {
@@ -20,7 +19,7 @@ export default function SportMain() {
   //   }
   // }, []);
 
-  console.log(NFL_DATA);
+  let picksCount: number = 0;
 
   const { sport } = useParams();
   return (
@@ -29,8 +28,8 @@ export default function SportMain() {
         <p className="text-white text-2xl w-full font-bold">
           {sport?.toUpperCase()}
         </p>
-        <div className="flex w-full">
-          <div className="flex flex-col gap-4 justify-between w-2/3">
+        <div className="flex w-full h-full justify-around overflow-auto">
+          <div className="flex flex-col gap-4 justify-start w-2/3 h-full overflow-auto">
             {NFL_DATA.map((match) => {
               const { home_team, away_team, commence_time } = match;
               const [awayMoneyLineOdds, homeMoneyLineOdds] =
@@ -39,7 +38,7 @@ export default function SportMain() {
                 match.bookmakers[1].markets[1].outcomes;
 
               return (
-                <MatchUpOdds
+                <MatchUp
                   key={match.id}
                   homeTeam={home_team}
                   awayTeam={away_team}
@@ -58,9 +57,7 @@ export default function SportMain() {
               );
             })}
           </div>
-          <div className="border h-fit p-6">
-            <p className="text-white">BET SLIP</p>
-          </div>
+          <BetSlip />
         </div>
       </div>
     </div>
