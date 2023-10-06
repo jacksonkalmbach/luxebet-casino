@@ -19,8 +19,6 @@ export default function SportMain() {
   //   }
   // }, []);
 
-  let picksCount: number = 0;
-
   const { sport } = useParams();
   return (
     <div className="flex w-full h-full p-8 bg-transparent">
@@ -40,6 +38,7 @@ export default function SportMain() {
               return (
                 <MatchUp
                   key={match.id}
+                  matchId={match.id}
                   homeTeam={home_team}
                   awayTeam={away_team}
                   commenceTime={commence_time}

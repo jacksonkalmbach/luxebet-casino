@@ -1,15 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
+import {
+  addPick,
+  removePick,
+  selectFullBetSlip,
+} from "../../../store/features/sportsbook/betSlipSlice";
+import { RootState } from "../../../store/store";
 
 interface MoneylineProps {
   price: number;
+  team: string;
 }
 
-export default function Moneyline({ price }: MoneylineProps) {
+export default function Moneyline({ team, price }: MoneylineProps) {
+  const dispatch = useDispatch();
+  const picksArray = useSelector((state: RootState) =>
+    selectFullBetSlip(state)
+  );
   const [isSelected, setIsSelected] = useState(false);
 
+  useEffect(() => {
+    if (picksArray.length === 0) {
+      setIsSelected(false);
+    }
+  }, [picksArray]);
+
   const handleClick = () => {
-    setIsSelected(!isSelected);
+    if (isSelected) {
+      setIsSelected(!isSelected);
+      dispatch(removePick({ team, price, betType: "Moneyline" }));
+    } else {
+      setIsSelected(!isSelected);
+      dispatch(addPick({ team, price, betType: "Moneyline" }));
+    }
   };
+
   return (
     <div
       className={`w-full flex p-2 justify-center items-center cursor-pointer active:scale-95 ${

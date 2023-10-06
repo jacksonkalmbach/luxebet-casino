@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import Pick from "./Pick";
@@ -16,23 +16,33 @@ export default function BetSlip() {
     selectFullBetSlip(state)
   );
 
+  const [betSlipSum, setBetSlipSum] = useState(0);
+
   const clearAllBets = () => {
     dispatch(clearBetSlip());
   };
 
-  const picksCount = 0;
+  const handleAddBet = useCallback(
+    (amount: number) => {
+      setBetSlipSum(betSlipSum + amount);
+    },
+    [betSlipSum]
+  );
+
   return (
     <div className="p-6 rounded-lg w-[30%] flex flex-col bg-[#f1f1f1] shadow-xl">
-      <div className="flex w-full justify-between items-center">
+      <div className="flex w-full justify-between items-center border-b">
         <div className="flex gap-1 items-center">
           <div className="text-[#0a1f3b] text-2xl p-2 font-bold">
-            {picksCount}
+            {picksArray.length}
           </div>
           <p className="text-[#0a1f3b] text-2xl font-bold">BET SLIP</p>
         </div>
-        <button onClick={clearAllBets} className="text-sm active:scale-95">
-          Clear Bets
-        </button>
+        {picksArray.length > 0 && (
+          <button onClick={clearAllBets} className="text-sm active:scale-95">
+            Clear Bets
+          </button>
+        )}
       </div>
 
       {picksArray.length === 0 ? (
@@ -52,6 +62,7 @@ export default function BetSlip() {
               return (
                 <Pick
                   key={team}
+                  onChange={handleAddBet}
                   team={team}
                   price={price}
                   point={point}
@@ -61,7 +72,7 @@ export default function BetSlip() {
             })}
           </div>
           <button className="bg-[#eec23e] w-full p-2 rounded-lg font-bold text-black justify-self-end active:scale-95">
-            Place bet
+            Place Bet
           </button>
         </div>
       )}

@@ -1,20 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { removePick } from "../../../store/features/sportsbook/betSlipSlice";
 
 import CloseIcon from "../../../icons/CloseIcon";
+import { calculatePayout } from "./utils/calculatePayout";
 
 interface PickProps {
   team: string;
   price: number;
   point?: number;
   betType: string;
+  onChange: (amount: number) => void;
 }
 
-export default function Pick({ team, price, point, betType }: PickProps) {
+export default function Pick({
+  team,
+  price,
+  point,
+  betType,
+  onChange,
+}: PickProps) {
+  const dispatch = useDispatch();
+
+  const [inputValue, setInputValue] = useState<number>(0);
+  const [payout, setPayout] = useState(0);
+
   const handleRemovePick = () => {
-    console.log("Remove pick");
+    dispatch(removePick({ team, price, point, betType }));
   };
 
-  let payout = 0;
+  useEffect(() => {
+    const payout = calculatePayout(price, inputValue);
+    setPayout(payout);
+  }, [inputValue, price]);
 
   return (
     <div className="flex justify-start items-start w-full gap-2 border-b">
@@ -32,13 +51,17 @@ export default function Pick({ team, price, point, betType }: PickProps) {
           <p className="text-xs">{price}</p>
         </div>
         <p className="text-xs">
-          {betType} {point ? (point > 0 ? `+${point}` : point) : 0}
+          {betType} {point ? (point > 0 ? `+${point}` : point) : ""}
         </p>
       </div>
-      <div className="flex flex-col w-1/4">
+      <div className="flex flex-col w-[30%] items-center">
         <input
-          className="rounded border mt-2 p-1 text-xs w-full"
-          placeholder="$ 0.00"
+          className="rounded border mt-2 p-1 text-xs w-4/5 text-end"
+          placeholder="$0.00"
+          value={inputValue || ""}
+          onChange={(e) => {
+            setInputValue(Number(e.target.value));
+          }}
         ></input>
         {payout > 0 && (
           <p className="text-[10px] text-center w-full">Payout: ${payout} </p>

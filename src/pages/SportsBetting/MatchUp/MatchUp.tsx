@@ -4,6 +4,7 @@ import Spread from "./Spread";
 import TeamName from "./TeamName";
 
 interface MatchUpOddsProps {
+  matchId: string;
   commenceTime: string;
   homeTeam: string;
   awayTeam: string;
@@ -16,6 +17,7 @@ interface MatchUpOddsProps {
 }
 
 export default function MatchUp({
+  matchId,
   commenceTime,
   homeTeam,
   awayTeam,
@@ -61,8 +63,8 @@ export default function MatchUp({
         <div className="border-b w-full flex justify-center items-center">
           MONEYLINE
         </div>
-        <Moneyline price={awayMoneyline} />
-        <Moneyline price={homeMoneyline} />
+        <Moneyline price={awayMoneyline} team={awayTeam} />
+        <Moneyline price={homeMoneyline} team={homeTeam} />
       </div>
     </div>
   );

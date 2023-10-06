@@ -127,7 +127,7 @@ export const NFL_DATA = [
     sport_title: "NFL",
   },
   {
-    away_team: "Chicago Bears",
+    away_team: "Tennessee Titans",
     bookmakers: [
       {
         key: "fanduel",
@@ -138,11 +138,11 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:47Z",
             outcomes: [
               {
-                name: "Chicago Bears",
+                name: "Tennessee Titans",
                 price: 205,
               },
               {
-                name: "Washington Commanders",
+                name: "Los Angeles Rams",
                 price: -255,
               },
             ],
@@ -160,11 +160,11 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:46Z",
             outcomes: [
               {
-                name: "Chicago Bears",
+                name: "Tennessee Titans",
                 price: 210,
               },
               {
-                name: "Washington Commanders",
+                name: "Los Angeles Rams",
                 price: -258,
               },
             ],
@@ -174,12 +174,12 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:46Z",
             outcomes: [
               {
-                name: "Chicago Bears",
+                name: "Tennessee Titans",
                 point: 6,
                 price: -110,
               },
               {
-                name: "Washington Commanders",
+                name: "Los Angeles Rams",
                 point: -6,
                 price: -110,
               },
@@ -192,14 +192,14 @@ export const NFL_DATA = [
       // ... any other bookmakers
     ],
     commence_time: "2023-10-06T00:18:00Z",
-    home_team: "Washington Commanders",
+    home_team: "Los Angeles Rams",
     id: "115303070d36ce1e366dc4a3091c53cd",
     sport_key: "americanfootball_nfl",
     sport_title: "NFL",
   },
 
   {
-    away_team: "Jacksonville Jaguars",
+    away_team: "Balitmore Ravens",
     bookmakers: [
       {
         key: "fanduel",
@@ -216,11 +216,11 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:46Z",
             outcomes: [
               {
-                name: "Buffalo Bills",
+                name: "Baltimore Ravens",
                 price: -238,
               },
               {
-                name: "Jacksonville Jaguars",
+                name: "Arizona Cardinals",
                 price: 195,
               },
             ],
@@ -230,12 +230,12 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:46Z",
             outcomes: [
               {
-                name: "Chicago Bears",
+                name: "Baltimore Ravens",
                 point: 6,
                 price: -110,
               },
               {
-                name: "Washington Commanders",
+                name: "Arizona Cardinals",
                 point: -6,
                 price: -110,
               },
@@ -248,13 +248,13 @@ export const NFL_DATA = [
       // ... other bookmakers (like betus, lowvig, etc.) can be added here in the same format
     ],
     commence_time: "2023-10-08T13:30:00Z",
-    home_team: "Buffalo Bills",
+    home_team: "Arizona Cardinals",
     id: "fdb93b64c39ea4a4312ffe74788b551b",
     sport_key: "americanfootball_nfl",
     sport_title: "NFL",
   },
   {
-    away_team: "Chicago Bears",
+    away_team: "Green Bay Packers",
     bookmakers: [
       {
         key: "fanduel",
@@ -265,11 +265,11 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:47Z",
             outcomes: [
               {
-                name: "Chicago Bears",
+                name: "Green Bay Packers",
                 price: 205,
               },
               {
-                name: "Washington Commanders",
+                name: "Kansas City Chiefs",
                 price: -255,
               },
             ],
@@ -287,11 +287,11 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:46Z",
             outcomes: [
               {
-                name: "Chicago Bears",
+                name: "Green Bay Packers",
                 price: 210,
               },
               {
-                name: "Washington Commanders",
+                name: "Kansas City Chiefs",
                 price: -258,
               },
             ],
@@ -301,12 +301,12 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:46Z",
             outcomes: [
               {
-                name: "Chicago Bears",
+                name: "Green Bay Packers",
                 point: 6,
                 price: -110,
               },
               {
-                name: "Washington Commanders",
+                name: "Kansas City Chiefs",
                 point: -6,
                 price: -110,
               },
@@ -319,14 +319,14 @@ export const NFL_DATA = [
       // ... any other bookmakers
     ],
     commence_time: "2023-10-06T00:18:00Z",
-    home_team: "Washington Commanders",
+    home_team: "Kansas City Chiefs",
     id: "115303070d36ce1e366dc4a3091c53cd",
     sport_key: "americanfootball_nfl",
     sport_title: "NFL",
   },
 
   {
-    away_team: "Jacksonville Jaguars",
+    away_team: "Minnesota Vikings",
     bookmakers: [
       {
         key: "fanduel",
@@ -343,11 +343,11 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:46Z",
             outcomes: [
               {
-                name: "Buffalo Bills",
+                name: "Minnesota Vikings",
                 price: -238,
               },
               {
-                name: "Jacksonville Jaguars",
+                name: "New York Jets",
                 price: 195,
               },
             ],
@@ -357,12 +357,12 @@ export const NFL_DATA = [
             last_update: "2023-10-05T23:46:46Z",
             outcomes: [
               {
-                name: "Chicago Bears",
+                name: "Minnesota Vikings",
                 point: 6,
                 price: -110,
               },
               {
-                name: "Washington Commanders",
+                name: "New York Jets",
                 point: -6,
                 price: -110,
               },
@@ -375,7 +375,7 @@ export const NFL_DATA = [
       // ... other bookmakers (like betus, lowvig, etc.) can be added here in the same format
     ],
     commence_time: "2023-10-08T13:30:00Z",
-    home_team: "Buffalo Bills",
+    home_team: "New York Jets",
     id: "fdb93b64c39ea4a4312ffe74788b551b",
     sport_key: "americanfootball_nfl",
     sport_title: "NFL",
