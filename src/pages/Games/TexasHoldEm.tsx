@@ -7,7 +7,7 @@ import TurnOptions from "../../components/TurnOptions";
 // import ArrowLeftIcon from "../icons/ArrowLeftIcon";
 import ExitIcon from "../../icons/ExitIcon";
 
-export default function NewGame() {
+export default function TexasHoldEm() {
   const navigate = useNavigate();
   return (
     <div className="flex w-full h-full p-8 bg-transparent">

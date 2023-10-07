@@ -44,7 +44,7 @@ export default function MatchUp({
   return (
     <div className="w-full flex text-white border p-2 bg-[#081a2f] rounded-lg">
       <div className="flex flex-col w-3/5 gap-2">
-        <div className="border-b">
+        <div className="border-b cursor-default">
           {formattedToday === formattedDate
             ? "TODAY"
             : formattedDate.toUpperCase()}
@@ -53,14 +53,14 @@ export default function MatchUp({
         <TeamName team={homeTeam} />
       </div>
       <div className="flex flex-col w-1/5 justify-center items-center gap-2">
-        <div className="border-b w-full flex justify-center items-center">
+        <div className="border-b w-full flex justify-center items-center cursor-default">
           SPREAD
         </div>
         <Spread team={awayTeam} price={awaySpreadOdds} point={awaySpread} />
         <Spread team={homeTeam} price={homeSpreadOdds} point={homeSpread} />
       </div>
       <div className="flex flex-col w-1/5 justify-center items-center gap-2">
-        <div className="border-b w-full flex justify-center items-center">
+        <div className="border-b w-full flex justify-center items-center cursor-default">
           MONEYLINE
         </div>
         <Moneyline price={awayMoneyline} team={awayTeam} />

@@ -48,16 +48,18 @@ export default function Spread({ team, price, point }: SpreadProps) {
 
   return (
     <div
-      className={`w-full flex gap-3 p-2 justify-center items-center cursor-pointer active:scale-95 ${
-        isSelected ? "bg-[#f1f1f1] text-[#0a1f3b] font-bold" : ""
+      className={`w-full flex gap-3 p-2 justify-center items-center cursor-pointer active:scale-95  ${
+        isSelected
+          ? "bg-[#f1f1f1] text-[#0a1f3b] font-bold"
+          : "hover:bg-gray-500/75"
       }`}
       onClick={handleClick}
     >
-      <div>
+      <div className="text-yellow-500">
         {point > 0 && "+"}
         {point}
       </div>
-      <div className="text-yellow-600">
+      <div className="">
         {price > 0 && "+"}
         {price}
       </div>

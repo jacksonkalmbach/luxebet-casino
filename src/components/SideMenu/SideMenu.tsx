@@ -3,6 +3,7 @@ import ChevronLeftIcon from "../../icons/ChevronLeftIcon";
 import ChevronDownIcon from "../../icons/ChevronDownIcon";
 import PokerChip from "../../icons/PokerChip";
 import Category from "./Category/Category";
+import { SPORTS } from "../../pages/Sportsbook/sports";
 
 export default function SideMenu() {
   const [miniMenu, setMiniMenu] = useState(false);
@@ -48,9 +49,9 @@ export default function SideMenu() {
                 links={["Texas Hold'em", "Blackjack", "Roulette"]}
               />
               <Category
-                title="Sports Betting"
-                category="sports-betting"
-                links={["NFL", "NBA", "MLB", "NCAAF", "NCAAB", "NHL"]}
+                title="Sportsbook"
+                category="sportsbook"
+                links={SPORTS.map((sport) => sport.name)}
               />
             </div>
           )}

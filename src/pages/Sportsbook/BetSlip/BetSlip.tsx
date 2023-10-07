@@ -30,7 +30,7 @@ export default function BetSlip() {
   );
 
   return (
-    <div className="p-6 rounded-lg w-[30%] flex flex-col bg-[#f1f1f1] shadow-xl">
+    <div className="p-6 rounded-lg w-[30%] flex flex-col bg-[#f1f1f1] shadow-xl overflow-auto">
       <div className="flex w-full justify-between items-center border-b">
         <div className="flex gap-1 items-center">
           <div className="text-[#0a1f3b] text-2xl p-2 font-bold">

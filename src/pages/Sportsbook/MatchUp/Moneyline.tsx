@@ -39,7 +39,9 @@ export default function Moneyline({ team, price }: MoneylineProps) {
   return (
     <div
       className={`w-full flex p-2 justify-center items-center cursor-pointer active:scale-95 ${
-        isSelected ? "bg-[#f1f1f1] text-[#0a1f3b] font-bold" : ""
+        isSelected
+          ? "bg-[#f1f1f1] text-[#0a1f3b] font-bold"
+          : "hover:bg-gray-500/75"
       }`}
       onClick={handleClick}
     >
