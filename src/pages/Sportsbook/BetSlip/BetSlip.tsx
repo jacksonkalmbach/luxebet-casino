@@ -1,14 +1,12 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
-
-import Pick from "./Pick";
-
 import {
   selectFullBetSlip,
   clearBetSlip,
 } from "../../../store/features/sportsbook/betSlipSlice";
-
+import { decrementUserBalance } from "../../../store/features/user/userSlice";
 import { RootState } from "../../../store/store";
+import Pick from "./Pick";
 
 export default function BetSlip() {
   const dispatch = useDispatch();
@@ -17,17 +15,30 @@ export default function BetSlip() {
   );
 
   const [betSlipSum, setBetSlipSum] = useState(0);
+  const [pickAmounts, setPickAmounts] = useState<Record<string, number>>({});
 
   const clearAllBets = () => {
     dispatch(clearBetSlip());
+    setPickAmounts({});
   };
 
-  const handleAddBet = useCallback(
-    (amount: number) => {
-      setBetSlipSum(betSlipSum + amount);
-    },
-    [betSlipSum]
-  );
+  const handleAddBet = useCallback((amount: number, team: string) => {
+    setPickAmounts((prev) => ({ ...prev, [team]: amount }));
+  }, []);
+
+  useEffect(() => {
+    const total = Object.values(pickAmounts).reduce(
+      (sum, amount) => sum + amount,
+      0
+    );
+    setBetSlipSum(total);
+  }, [pickAmounts]);
+
+  const handlePlaceBet = () => {
+    if (betSlipSum === 0) return;
+    dispatch(decrementUserBalance(betSlipSum));
+    dispatch(clearBetSlip());
+  };
 
   return (
     <div className="p-6 rounded-lg w-[30%] flex flex-col bg-[#f1f1f1] shadow-xl overflow-auto">
@@ -61,7 +72,8 @@ export default function BetSlip() {
               const { team, price, point, betType } = pick;
               return (
                 <Pick
-                  key={team}
+                  key={`${team}-${betType}-${price}`}
+                  id={`${team}-${betType}-${price}`}
                   onChange={handleAddBet}
                   team={team}
                   price={price}
@@ -71,8 +83,17 @@ export default function BetSlip() {
               );
             })}
           </div>
-          <button className="bg-[#eec23e] w-full p-2 rounded-lg font-bold text-black justify-self-end active:scale-95">
-            Place Bet
+          <button
+            className={`bg-[#eec23e] w-full p-2 rounded-lg font-bold text-black justify-self-end  ${
+              betSlipSum === 0
+                ? "cursor-not-allowed opacity-50 disabled"
+                : "cursor-pointer active:scale-95 opacity-100"
+            }`}
+            onClick={handlePlaceBet}
+          >
+            {betSlipSum === 0
+              ? "Enter Wager Amount"
+              : `Place Bet $${betSlipSum.toFixed(2)}`}
           </button>
         </div>
       )}

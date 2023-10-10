@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-
 import { removePick } from "../../../store/features/sportsbook/betSlipSlice";
-
 import CloseIcon from "../../../icons/CloseIcon";
 import { calculatePayout } from "./utils/calculatePayout";
 
 interface PickProps {
+  id: string;
   team: string;
   price: number;
   point?: number;
   betType: string;
-  onChange: (amount: number) => void;
+  onChange: (amount: number, team: string) => void;
 }
 
 export default function Pick({
+  id,
   team,
   price,
   point,
@@ -31,8 +31,8 @@ export default function Pick({
   };
 
   useEffect(() => {
-    const payout = calculatePayout(price, inputValue);
-    setPayout(payout);
+    const calculatedPayout = calculatePayout(price, inputValue);
+    setPayout(calculatedPayout);
   }, [inputValue, price]);
 
   return (
@@ -46,7 +46,7 @@ export default function Pick({
       <div className="flex flex-col py-3 w-3/5">
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
-            <p className="font-bold text-xs">{team}</p>{" "}
+            <p className="font-bold text-xs">{team}</p>
           </div>
           <p className="text-xs">{price}</p>
         </div>
@@ -60,7 +60,9 @@ export default function Pick({
           placeholder="$0.00"
           value={inputValue || ""}
           onChange={(e) => {
-            setInputValue(Number(e.target.value));
+            const value = Number(e.target.value);
+            setInputValue(value);
+            onChange(value, id);
           }}
         ></input>
         {payout > 0 && (

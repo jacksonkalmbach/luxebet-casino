@@ -11,19 +11,25 @@ import SportsBettingMain from "./pages/Sportsbook/SportsBettingMain";
 import SportMain from "./pages/Sportsbook/SportMain";
 
 import "./App.css";
+import MyBets from "./pages/Sportsbook/MyBets/MyBets";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<MainPage />}>
         <Route index element={<StartPage />} />
-        <Route path="/games/texas hold'em" element={<TexasHoldEm />} />
-        <Route path="/games/blackjack" element={<Blackjack />} />
-        <Route path="/games/roulette" element={<Roulette />} />
-        <Route path="/sportsbook" element={<SportsBettingMain />} />
-        <Route path="/sportsbook/:sport" element={<SportWrapper />}>
-          <Route index element={<SportMain />} />
-          <Route path="category/:categoryName" element={<SportMain />} />
+        <Route path="games">
+          <Route path="texas hold'em" element={<TexasHoldEm />} />
+          <Route path="blackjack" element={<Blackjack />} />
+          <Route path="roulette" element={<Roulette />} />
+        </Route>
+        <Route path="sportsbook">
+          <Route index element={<SportsBettingMain />} />
+          <Route path="mybets" element={<MyBets />} />
+          <Route path=":sport" element={<SportWrapper />}>
+            <Route index element={<SportMain />} />
+            <Route path=":title" element={<SportMain />} />
+          </Route>
         </Route>
       </Route>
     </Routes>

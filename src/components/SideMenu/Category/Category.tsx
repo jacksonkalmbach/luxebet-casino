@@ -7,31 +7,28 @@ interface CategoryProps {
   title: string;
   links: string[];
   category: string;
+  subCategories?: { [key: string]: { key: string; title: string }[] } | undefined;
 }
 
-export default function Category({ title, links, category }: CategoryProps) {
-  // const [open, setOpen] = useState(true);
-
-  // const handleToggleOpen = () => {
-  //   setOpen(!open);
-  // };
-
+export default function Category({
+  title,
+  links,
+  category,
+  subCategories,
+}: CategoryProps) {
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex w-full justify-between">
         <p className="font-bold cursor-default">{title}</p>
-        {/* <div
-          className={`${
-            !open ? "" : "rotate-180"
-          } transiton-all duration-500 cursor-pointer`}
-          onClick={handleToggleOpen}
-        >
-          <ChevronDownIcon color="#CCCCCC" />
-        </div> */}
       </div>
       <div className="flex flex-col gap-2">
         {links.map((link) => (
-          <CategoryLink key={link} category={category} title={link} />
+          <CategoryLink
+            key={link}
+            category={category}
+            title={link}
+            subCategories={subCategories?.[link]}
+          />
         ))}
       </div>
     </>

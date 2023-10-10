@@ -1,20 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ChevronLeftIcon from "../../icons/ChevronLeftIcon";
-import ChevronDownIcon from "../../icons/ChevronDownIcon";
-import PokerChip from "../../icons/PokerChip";
+
 import Category from "./Category/Category";
+
 import { SPORTS } from "../../pages/Sportsbook/sports";
+
+
 
 export default function SideMenu() {
   const [miniMenu, setMiniMenu] = useState(false);
   const [showMenuWords, setShowMenuWords] = useState(true);
+  const [subCategories, setSubCategories] = useState<{
+    [key: string]: { key: string; title: string }[];
+  }>();
+  const [sports, setSports] = useState<string[]>([]);
+
+  useEffect(() => {
+    try {
+      const fetchSports = async () => {
+        const response = await fetch(url, options);
+        const result = await response.json();
+        const newSubCategories = result.reduce(
+          (
+            acc: { [key: string]: { key: string; title: string }[] },
+            sport: any
+          ) => {
+            if (!acc[sport.group]) {
+              acc[sport.group] = [];
+            }
+            acc[sport.group].push({ key: sport.key, title: sport.title });
+            return acc;
+          },
+          {}
+        );
+
+        const groups = Object.keys(newSubCategories);
+        setSports(groups);
+        setSubCategories(newSubCategories);
+      };
+      fetchSports();
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
 
   const handleToggleMiniMenu = () => {
     setMiniMenu(!miniMenu);
     if (miniMenu) {
       setTimeout(() => {
         setShowMenuWords(true);
-      }, 450);
+      }, 300);
     } else {
       setShowMenuWords(false);
     }
@@ -23,36 +58,33 @@ export default function SideMenu() {
   return (
     <>
       <div
-        className={`hidden md:flex flex-col ${
+        className={`hidden md:flex flex-col overflow-auto ${
           miniMenu ? "w-[5%]" : "w-[20%]"
         } h-full bg-[#0a1f3b] text-white rounded-l-lg border-r border-[#1c314c] p-4 justify-center items-center justify-between transition-all duration-500`}
       >
         <div className="flex flex-col gap-4 w-full p-6">
-          <div className="flex justify-center items-center mb-8">
-            <div className="w-8 h-8">
-              <PokerChip />
-            </div>
-            <div
-              className=" transition-all duration-500 w-fit"
-              style={{ width: miniMenu ? 0 : "100px" }}
-            >
+          <div className="flex justify-center items-start">
+            <div className=" transition-all duration-500 w-fit">
               {showMenuWords && (
-                <p className="text-white font-bold text-3xl ml-3">CASINO</p>
+                <p className="text-white font-bold text-3xl">CASINO</p>
               )}
             </div>
           </div>
-          {!miniMenu && (
+          {showMenuWords && (
             <div className="flex flex-col gap-4">
               <Category
                 title="Games"
                 category="games"
                 links={["Texas Hold'em", "Blackjack", "Roulette"]}
               />
-              <Category
-                title="Sportsbook"
-                category="sportsbook"
-                links={SPORTS.map((sport) => sport.name)}
-              />
+              {sports.length && (
+                <Category
+                  title="Sportsbook"
+                  category="sportsbook"
+                  links={sports}
+                  subCategories={subCategories}
+                />
+              )}
             </div>
           )}
         </div>

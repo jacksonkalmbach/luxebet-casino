@@ -28,6 +28,8 @@ export default function MatchUp({
   homeMoneyline,
   awayMoneyline,
 }: MatchUpOddsProps) {
+  
+
   const date = new Date(commenceTime);
   const options: any = {
     weekday: "short",
@@ -42,7 +44,7 @@ export default function MatchUp({
   );
 
   return (
-    <div className="w-full flex text-white border p-2 bg-[#081a2f] rounded-lg">
+    <div className="w-full flex text-white p-2 bg-[#081a2f] rounded-lg">
       <div className="flex flex-col w-3/5 gap-2">
         <div className="border-b cursor-default">
           {formattedToday === formattedDate
