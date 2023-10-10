@@ -14,7 +14,6 @@ import {
   setUserPlacedBetTotal,
   setIsBetPlaced,
   setIsFolded,
-  selectIsUserTurn,
 } from "../store/features/game/userGameSlice";
 
 import { incrementPotByAmount } from "../store/features/game/potSlice";
