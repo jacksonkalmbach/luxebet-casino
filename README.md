@@ -20,7 +20,7 @@ Welcome to the Casino Project! This application brings the excitement of casino 
 
 To get started with this project:
 
-1. Clone the repository: `git clone <https://github.com/jacksonkalmbach/poker-fe>`
+1. Clone the repository: `git clone https://github.com/jacksonkalmbach/poker-fe`
 2. Install dependencies: `npm install` or `yarn install`
 3. Start the development server: `npm start` or `yarn start`
 
