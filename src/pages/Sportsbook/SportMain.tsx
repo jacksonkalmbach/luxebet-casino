@@ -1,29 +1,42 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 import BetSlip from "./BetSlip/BetSlip";
 import MatchUp from "./MatchUp/MatchUp";
 import MatchUpSkeleton from "./MatchUp/MatchUpSkeleton";
 import BetNavigation from "./Navigation/BetNavigation";
 
-import { NFL_DATA } from "./NFL_ODDS";
+const SPORTS_API_KEY = process.env.REACT_APP_SPORTS_API_KEY;
 
-
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": SPORTS_API_KEY as string,
+    "X-RapidAPI-Host": "odds.p.rapidapi.com",
+  },
+};
 
 export default function SportMain() {
   const [apiData, setApiData] = useState<any>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { sport, title } = useParams();
-  const params = useParams();
-  console.log(params);
 
-  
+  const url = `https://odds.p.rapidapi.com/v4/sports/${title}/odds?regions=us&oddsFormat=american&markets=h2h%2Cspreads&dateFormat=iso`;
 
   useEffect(() => {
     try {
       const fetchSportOdds = async () => {
         const response = await fetch(url, options);
-        const result = await response.json();
-        console.log(result);
-        setApiData(result);
+        if (response.status === 422) {
+          setErrorMessage("Sorry, we can't access those odds right now.");
+          return;
+        } else if (response.ok) {
+          const result = await response.json();
+          setErrorMessage(null);
+          setApiData(result);
+        } else {
+          console.error("Unexpected response:", response.statusText);
+        }
       };
       fetchSportOdds();
     } catch (error) {
@@ -43,7 +56,9 @@ export default function SportMain() {
         <BetNavigation sport={sport} />
         <div className="flex w-full h-full justify-around overflow-auto">
           <div className="flex flex-col gap-4 justify-start w-2/3 h-full overflow-auto">
-            {apiData.length === 0 ? (
+            {errorMessage ? (
+              <div className="text-center text-red-600">{errorMessage}</div>
+            ) : apiData.length === 0 ? (
               <>
                 <MatchUpSkeleton />
                 <MatchUpSkeleton />
@@ -52,35 +67,41 @@ export default function SportMain() {
               </>
             ) : (
               <>
-                {Array.isArray(apiData) && apiData.map((match: any) => {
-                  const { home_team, away_team, commence_time } = match;
+                {apiData
+                  .filter((match: any) => {
+                    if (!match.bookmakers || match.bookmakers.length === 0)
+                      return false;
 
-                  const [awayMoneyLineOdds, homeMoneyLineOdds] =
-                    match?.bookmakers?.[2]?.markets?.[0]?.outcomes;
+                    const validBookmakerKeys = [
+                      "draftkings",
+                      "bovada",
+                      "betus",
+                      "unibet_us",
+                    ];
+                    return match.bookmakers.some((bookmaker: any) =>
+                      validBookmakerKeys.includes(bookmaker.key)
+                    );
+                  })
+                  .map((match: any) => {
+                    const {
+                      id,
+                      home_team,
+                      away_team,
+                      commence_time,
+                      bookmakers,
+                    } = match;
 
-                  const [awaySpreadOdds, homeSpreadOdds] =
-                    match?.bookmakers?.[2]?.markets?.[1]?.outcomes;
-
-                  return (
-                    <MatchUp
-                      key={match.id}
-                      matchId={match.id}
-                      homeTeam={home_team}
-                      awayTeam={away_team}
-                      commenceTime={commence_time}
-                      homeSpreadOdds={homeSpreadOdds.price}
-                      awaySpreadOdds={awaySpreadOdds.price}
-                      homeSpread={
-                        "point" in homeSpreadOdds ? homeSpreadOdds.point : 0
-                      }
-                      awaySpread={
-                        "point" in awaySpreadOdds ? awaySpreadOdds.point : 0
-                      }
-                      homeMoneyline={homeMoneyLineOdds.price}
-                      awayMoneyline={awayMoneyLineOdds.price}
-                    />
-                  );
-                })}
+                    return (
+                      <MatchUp
+                        key={id}
+                        matchId={id}
+                        homeTeam={home_team}
+                        awayTeam={away_team}
+                        commenceTime={commence_time}
+                        bookmakers={bookmakers}
+                      />
+                    );
+                  })}
               </>
             )}
           </div>

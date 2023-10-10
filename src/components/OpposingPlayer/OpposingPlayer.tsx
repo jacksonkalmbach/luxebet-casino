@@ -3,6 +3,7 @@ import React from "react";
 import LittleBlind from "../PokerTable/Blind/LittleBlind";
 import BigBlind from "../PokerTable/Blind/BigBlind";
 import OpposingHand from "./OpposingHand";
+import Timer from "../Timer/Timer";
 
 interface OpposingPlayerProps {
   side: "left" | "right";
@@ -13,6 +14,7 @@ interface OpposingPlayerProps {
         suit: "clubs" | "diamonds" | "hearts" | "spades";
         value: string;
       }[];
+  isTurn?: boolean;
   isFolded?: boolean;
   isOccupied?: boolean;
   isSmallBlind?: boolean;
@@ -24,13 +26,18 @@ export default function OpposingPlayer({
   image,
   name,
   cards,
+  isTurn,
   isFolded,
   isOccupied,
   isSmallBlind,
   isBigBlind,
 }: OpposingPlayerProps) {
   return (
-    <div className="w-fit h-fit flex flex-col justify-center items-center shadow-xl">
+    <div
+      className={`w-fit h-fit flex flex-col justify-center items-center shadow-xl transition-all duration-300 ${
+        !isTurn ? "scale-75 opacity-75" : ""
+      }`}
+    >
       <div
         className={`relative w-48 ${
           isOccupied
@@ -47,13 +54,24 @@ export default function OpposingPlayer({
           {isSmallBlind && <LittleBlind />}
         </div>
         {isOccupied ? (
-          <img
-            src={image}
-            alt="profile"
-            className={`absolute ${
-              side === "left" ? "-left-7" : "-right-7"
-            } h-20 w-20 flex rounded-full bg-gray-200 border-2 border-[#f3cb16]`}
-          />
+          <>
+            <img
+              src={image}
+              alt="profile"
+              className={`absolute ${
+                side === "left" ? "-left-7" : "-right-7"
+              } h-20 w-20 flex rounded-full bg-gray-200 border-2 border-[#f3cb16]`}
+            />
+            {isTurn && (
+              <div
+                className={`absolute ${
+                  side === "left" ? "-left-9" : "-right-9"
+                } h-24 w-24 flex rounded-full`}
+              >
+                <Timer />
+              </div>
+            )}
+          </>
         ) : (
           <div
             className={`absolute ${

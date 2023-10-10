@@ -9,10 +9,10 @@ interface ButtonProps {
 export default function Button({ text, isUserTurn, onClick }: ButtonProps) {
   return (
     <div
-      className={`flex justify-center items-center px-3 py-2 border rounded-lg bg-[#eec23e] text-black   ${
+      className={`flex justify-center items-center px-3 py-2 border rounded-lg bg-[#eec23e] text-black transition-all duration-300  ${
         isUserTurn
           ? "cursor-pointer bg-[#eec23e] active:scale-95 hover:bg-[#d6ad32]"
-          : "cursor-not-allowed bg-gray-300"
+          : "cursor-not-allowed bg-gray-300 opacity-50"
       }`}
       onClick={onClick}
     >

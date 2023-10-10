@@ -3,9 +3,16 @@ import ChevronLeftIcon from "../../icons/ChevronLeftIcon";
 
 import Category from "./Category/Category";
 
-import { SPORTS } from "../../pages/Sportsbook/sports";
+const SPORTS_API_KEY = process.env.REACT_APP_SPORTS_API_KEY;
 
-
+const url = "https://odds.p.rapidapi.com/v4/sports?all=false";
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": SPORTS_API_KEY as string,
+    "X-RapidAPI-Host": "odds.p.rapidapi.com",
+  },
+};
 
 export default function SideMenu() {
   const [miniMenu, setMiniMenu] = useState(false);

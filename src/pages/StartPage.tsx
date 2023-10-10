@@ -3,7 +3,7 @@ import AuthMain from "./Auth/AuthMain";
 import MainMenu from "./MainMenu";
 
 export default function StartPage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   const handleGuestLogin = () => {
     setIsLoggedIn(true);

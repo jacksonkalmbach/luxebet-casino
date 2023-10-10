@@ -31,7 +31,7 @@ export default function TurnOptions() {
   const userBalance = useSelector((state: RootState) =>
     selectUserBalance(state)
   );
-  const isUserTurn = useSelector((state: RootState) => selectIsUserTurn(state));
+  const playerUp = useSelector((state: RootState) => state.poker.playerUp);
 
   const handleUserFold = () => {
     dispatch(setIsFolded(true));
@@ -63,7 +63,7 @@ export default function TurnOptions() {
       <Button
         text="-"
         onClick={() => handleBetDecrease(10)}
-        isUserTurn={isUserTurn}
+        isUserTurn={playerUp === 0}
       />
       <div className="w-1/5">
         <Slider
@@ -72,7 +72,7 @@ export default function TurnOptions() {
           aria-label="Default"
           valueLabelDisplay="auto"
           step={10}
-          disabled={!isUserTurn}
+          disabled={playerUp !== 0}
           onChange={(e, value) => setBetValue(value as number)}
           sx={{
             color: "#eec23e",
@@ -90,29 +90,33 @@ export default function TurnOptions() {
       <Button
         text="+"
         onClick={() => handleBetIncrease(10)}
-        isUserTurn={isUserTurn}
+        isUserTurn={playerUp === 0}
       />
       <Button
         text={`Bet ${userBetTotal}`}
         onClick={() => handleSubmitBet(betValue)}
-        isUserTurn={isUserTurn}
+        isUserTurn={playerUp === 0}
       />
       <Button
         text="Check"
         onClick={() => handleSubmitBet(0)}
-        isUserTurn={isUserTurn}
+        isUserTurn={playerUp === 0}
       />
       <Button
         text={`Call ${800}`}
         onClick={() => handleSubmitBet(800)}
-        isUserTurn={isUserTurn}
+        isUserTurn={playerUp === 0}
       />
       <Button
         text="All In"
         onClick={() => handleSubmitBet(userBalance)}
-        isUserTurn={isUserTurn}
+        isUserTurn={playerUp === 0}
       />
-      <Button text="Fold" onClick={handleUserFold} isUserTurn={isUserTurn} />
+      <Button
+        text="Fold"
+        onClick={handleUserFold}
+        isUserTurn={playerUp === 0}
+      />
     </div>
   );
 }
