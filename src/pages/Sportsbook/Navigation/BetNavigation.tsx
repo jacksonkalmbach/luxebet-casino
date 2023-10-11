@@ -13,7 +13,7 @@ export default function BetNavigation({ sport }: { sport?: string }) {
   };
 
   return (
-    <div className="w-full flex gap-4 border-b border-[#1c314c]">
+    <div className="w-full flex gap-4 border-b border-bgBorder">
       <BetNavLink
         title="GAME"
         sport={sport}

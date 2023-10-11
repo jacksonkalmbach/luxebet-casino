@@ -5,7 +5,7 @@ import Header from "../components/Header/Header";
 
 export default function MainPage() {
   return (
-    <div className="flex bg-[#081a2f] w-screen h-screen justify-start items-center border-8 border-[#1c2e52]">
+    <div className="flex bg-primaryBg w-screen h-screen justify-start items-center border-8 border-bgBorder">
       <SideMenu />
       <div className="flex flex-col w-full h-full">
       <Header />

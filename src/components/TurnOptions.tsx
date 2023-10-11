@@ -58,7 +58,7 @@ export default function TurnOptions() {
   };
 
   return (
-    <div className="w-full h-[10%] flex justify-center gap-3 items-center text-white absolute bottom-0 bg-[#0c2748]">
+    <div className="w-full h-[10%] flex justify-center gap-3 items-center text-white absolute bottom-0 bg-tertiaryBg">
       <Button
         text="-"
         onClick={() => handleBetDecrease(10)}

@@ -84,7 +84,7 @@ export default function BetSlip() {
             })}
           </div>
           <button
-            className={`bg-[#eec23e] w-full p-2 rounded-lg font-bold text-black justify-self-end  ${
+            className={`bg-primaryAccent w-full p-2 rounded-lg font-bold text-black justify-self-end  ${
               betSlipSum === 0
                 ? "cursor-not-allowed opacity-50 disabled"
                 : "cursor-pointer active:scale-95 opacity-100"

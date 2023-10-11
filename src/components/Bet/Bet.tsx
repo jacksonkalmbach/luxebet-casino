@@ -8,7 +8,7 @@ interface BetProps {
 
 export default function Bet({ amount, side = "left" }: BetProps) {
   return (
-    <div className="relative flex flex-col rounded-lg border-2 border-[#f3cb16] h-10 w-20 bg-[#23325c] justify-center items-center">
+    <div className="relative flex flex-col rounded-lg border-2 border-[#f3cb16] h-10 w-20 bg-primaryBg justify-center items-center">
       <div
         className={`absolute w-12 h-12 ${
           side === "left" ? "-right-6" : "-left-6"

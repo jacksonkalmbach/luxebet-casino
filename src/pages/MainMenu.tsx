@@ -5,12 +5,16 @@ import { SPORTS } from "./Sportsbook/sports";
 export default function MainMenu() {
   const navigate = useNavigate();
 
-  const handleNavigate = (category: string, game: string) => {
-    navigate(`/${category}/${game}`);
+  const handleNavigate = (
+    category: string,
+    game: string,
+    sport_key?: string
+  ) => {
+    navigate(`/${category}/${game}/${sport_key}`);
   };
 
   return (
-    <div className="relative flex flex-col w-full h-full bg-[#0a1f3b] rounded-2xl justify-start items-center p-10 border border-[#1c314c] gap-10">
+    <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-start items-center p-10 border border-bgBorder gap-10">
       <div className="w-full flex flex-col h-2/5 gap-3">
         <h1 className="text-white text-3xl font-bold">Games</h1>
         <div className="flex gap-4 h-full w-full">

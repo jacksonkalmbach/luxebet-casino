@@ -19,7 +19,7 @@ export default function Header() {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="w-full flex bg-[#0a1f3b] border-b border-[#1c314c] justify-end items-center py-3 px-6 gap-10">
+    <div className="w-full flex bg-secondaryBg border-b border-bgBorder justify-end items-center py-3 px-6 gap-10">
       {segment === "sportsbook" && (
         <>
           <div

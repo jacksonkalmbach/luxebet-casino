@@ -23,7 +23,7 @@ export default function BetNavLink({
     <div
       className={`${
         active === title
-          ? "text-yellow-500 border-yellow-500 font-bold"
+          ? "text-primaryAccent border-primaryAccent font-bold"
           : "text-white border-transparent"
       } cursor-pointer border-b-2 pb-2 w-[100px] flex justify-center items-center transition-all duration-200 ease-in-out`}
       onClick={handleClick}

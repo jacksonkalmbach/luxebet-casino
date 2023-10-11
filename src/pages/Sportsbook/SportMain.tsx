@@ -49,7 +49,7 @@ export default function SportMain() {
       className="flex w-full h-full p-8 bg-transparent"
       style={{ height: "calc(100% - 48px)" }}
     >
-      <div className="relative flex flex-col w-full h-full bg-[#0a1f3b] rounded-2xl justify-start items-start p-10 border border-[#1c314c] gap-10">
+      <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-start items-start p-10 border border-bgBorder gap-10">
         <p className="text-white text-2xl w-full font-bold">
           {sport?.toUpperCase()} Betting Odds
         </p>

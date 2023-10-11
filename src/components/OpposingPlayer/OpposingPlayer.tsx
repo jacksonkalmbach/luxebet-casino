@@ -41,7 +41,7 @@ export default function OpposingPlayer({
       <div
         className={`relative w-48 ${
           isOccupied
-            ? " flex bg-[#23325c] px-2 py-1 items-center justify-center rounded-lg border-2 border-[#f3cb16]"
+            ? " flex bg-primaryBg px-2 py-1 items-center justify-center rounded-lg border-2 border-[#f3cb16]"
             : ""
         }`}
       >

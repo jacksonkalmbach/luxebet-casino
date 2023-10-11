@@ -32,12 +32,6 @@ export default function Spread({ team, price, point }: SpreadProps) {
     setIsSelected(existsInPicks);
   }, [picksArray, team, price, point]);
 
-  // useEffect(() => {
-  //   if (picksArray.length === 0) {
-  //     setIsSelected(false);
-  //   }
-  // }, [picksArray]);
-
   const handleClick = () => {
     if (isSelected) {
       dispatch(removePick({ team, price, point, betType: "Spread" }));
@@ -50,12 +44,14 @@ export default function Spread({ team, price, point }: SpreadProps) {
     <div
       className={`w-full flex gap-3 p-2 justify-center items-center cursor-pointer active:scale-95  ${
         isSelected
-          ? "bg-[#f1f1f1] text-[#0a1f3b] font-bold"
-          : "hover:bg-gray-500/75"
+          ? "bg-highlight text-primaryBg font-bold bg-opacity-80"
+          : "hover:bg-highlight hover:text-primaryBg hover:bg-opacity-40"
       }`}
       onClick={handleClick}
     >
-      <div className="text-yellow-500">
+      <div
+        className={`${isSelected ? "text-subduedText" : "text-primaryAccent"}`}
+      >
         {point > 0 && "+"}
         {point}
       </div>

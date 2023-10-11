@@ -30,11 +30,9 @@ export default function Timer({
 
   const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
 
-  // Calculate the circumference of the circle
   const radius = 50;
   const circumference = 2 * Math.PI * radius;
 
-  // Calculate how much of the circumference should be shown
   const offset = circumference - (timeLeft / TOTAL_TIME) * circumference;
 
   useEffect(() => {
@@ -72,7 +70,7 @@ export default function Timer({
           cx="60"
           cy="60"
           fill="transparent"
-          stroke={timeLeft <= TOTAL_TIME / 4 ? "red" : "blue"}
+          stroke={timeLeft <= TOTAL_TIME / 4 ? "#ff4747" : "#4285f4"}
           strokeWidth="5"
           strokeLinecap="round"
           transform="rotate(-90 60 60)"

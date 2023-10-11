@@ -96,7 +96,7 @@ export default function MatchUp({
   }, [bookmakers]);
 
   return (
-    <div className="w-full flex text-white p-2 bg-[#081a2f] rounded-lg">
+    <div className="w-full flex text-white p-2 bg-primaryBg rounded-lg">
       <div className="flex flex-col w-3/5 gap-2">
         <div className="border-b cursor-default">
           {formattedToday === formattedDate

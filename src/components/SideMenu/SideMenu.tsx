@@ -67,13 +67,29 @@ export default function SideMenu() {
       <div
         className={`hidden md:flex flex-col overflow-auto ${
           miniMenu ? "w-[5%]" : "w-[20%]"
-        } h-full bg-[#0a1f3b] text-white rounded-l-lg border-r border-[#1c314c] p-4 justify-center items-center justify-between transition-all duration-500`}
+        } h-full bg-secondaryBg text-white rounded-l-lg border-r border-bgBorder p-4 justify-center items-center justify-between transition-all duration-500`}
       >
         <div className="flex flex-col gap-4 w-full p-6">
           <div className="flex justify-center items-start">
             <div className=" transition-all duration-500 w-fit">
               {showMenuWords && (
-                <p className="text-white font-bold text-3xl">CASINO</p>
+                <div className="flex flex-col justifya-center items-center">
+                  <p
+                    className="text-yellow-500 font-bold text-3xl"
+                    style={{
+                      textShadow: `
+      0 0 3px #fff9e0, 
+      0 0 6px #fff9e0, 
+      0 0 9px #ffd700, 
+      0 0 12px #ffd700, 
+      0 0 15px #ffd700
+    `,
+                    }}
+                  >
+                    LuxeBet
+                  </p>
+                  <p className="text-white font-bold text-base">- Casino -</p>
+                </div>
               )}
             </div>
           </div>

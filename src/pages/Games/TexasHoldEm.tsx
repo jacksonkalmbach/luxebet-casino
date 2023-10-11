@@ -11,10 +11,10 @@ export default function TexasHoldEm() {
   const navigate = useNavigate();
   return (
     <div className="flex w-full h-full p-8 bg-transparent">
-      <div className="relative flex flex-col w-full h-full bg-[#0a1f3b] rounded-2xl justify-center items-center border border-[#1c314c]">
+      <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center border border-bgBorder overflow-hidden">
         <div className="absolute top-5 left-10 cursor-pointer active:scale-95">
           <button
-            className="flex gap-2 px-3 py-2 rounded hover:bg-[#081a2f] group"
+            className="flex gap-2 px-3 py-2 rounded hover:bg-primaryBg group"
             onClick={() => navigate("/")}
           >
             <ExitIcon color="#CCCCCC" />{" "}

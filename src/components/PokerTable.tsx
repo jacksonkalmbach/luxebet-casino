@@ -69,7 +69,7 @@ export default function PokerTable() {
   const playerTurn = useSelector((state: RootState) => state.poker.playerUp);
 
   return (
-    <div className="relative bg-[#23325c] w-[80%] md:w-[65%] flex flex-col justify-center items-center rounded-full h-[70%] md:h-[60%] border-[#fad255]  border-8 md:border-[20px] shadow-2xl mb-[5%]">
+    <div className="relative bg-secondaryAccent w-[80%] md:w-[65%] flex flex-col justify-center items-center rounded-full h-[70%] md:h-[60%] border-[#fad255]  border-8 md:border-[20px] shadow-2xl mb-[5%]">
       <Bets />
       <Pot />
       <TableCards />
