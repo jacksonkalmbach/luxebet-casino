@@ -1,4 +1,4 @@
-# Casino Project
+# LuxeBet Casino Project
 
 Welcome to the Casino Project! This application brings the excitement of casino games and combines it with live sports odds, providing a unique and thrilling experience for users.
 
@@ -38,5 +38,6 @@ Enjoy the casino experience!
 If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
 
 ## Contact
+
 - jacksonrkalmbach@gmail.com
 - https://www.linkedin.com/in/jacksonkalmbach/
