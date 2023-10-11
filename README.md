@@ -1,4 +1,4 @@
-# ♠️ LuxeBet Casino Project
+# 🎰 LuxeBet Casino Project
 
 Welcome to the Casino Project! This application brings the excitement of casino games and combines it with live sports odds, providing a unique and thrilling experience for users.
 
