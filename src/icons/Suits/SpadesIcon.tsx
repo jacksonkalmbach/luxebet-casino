@@ -1,9 +1,13 @@
 import React from "react";
 
-export default function SpadesIcon() {
+interface SpadesIconProps {
+  isLogo?: boolean;
+}
+
+export default function SpadesIcon({ isLogo }: SpadesIconProps) {
   return (
     <svg
-      fill="#000000"
+      fill={isLogo ? "#FFD700" : "#000000"}
       height="100%"
       width="100%"
       version="1.1"

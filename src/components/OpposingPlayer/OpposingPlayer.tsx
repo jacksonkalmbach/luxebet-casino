@@ -4,6 +4,7 @@ import LittleBlind from "../PokerTable/Blind/LittleBlind";
 import BigBlind from "../PokerTable/Blind/BigBlind";
 import OpposingHand from "./OpposingHand";
 import Timer from "../Timer/Timer";
+import PokerChip from "../../icons/PokerChip";
 
 interface OpposingPlayerProps {
   side: "left" | "right";
@@ -32,6 +33,10 @@ export default function OpposingPlayer({
   isSmallBlind,
   isBigBlind,
 }: OpposingPlayerProps) {
+  const playerBalance = 1000;
+  const playerBalanceWithCommas = playerBalance
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   return (
     <div
       className={`w-fit h-fit flex flex-col justify-center items-center shadow-xl transition-all duration-300 ${
@@ -88,7 +93,12 @@ export default function OpposingPlayer({
               }`}
             >
               <p className="text-white font-semibold text-sm">{name}</p>
-              <p className="text-white">$1,000</p>
+              <div className="flex gap-1 justify-center items-center">
+                <div className="h-4 w-4">
+                  <PokerChip />
+                </div>
+                <p className="text-white">{playerBalanceWithCommas}</p>
+              </div>
             </div>
           </>
         )}

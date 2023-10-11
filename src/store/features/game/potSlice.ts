@@ -5,7 +5,7 @@ interface PotState {
 }
 
 const initialState: PotState = {
-  potTotal: 0,
+  potTotal: 10000,
 };
 
 const potSlice = createSlice({

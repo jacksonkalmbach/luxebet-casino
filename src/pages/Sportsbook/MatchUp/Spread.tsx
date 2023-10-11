@@ -44,8 +44,8 @@ export default function Spread({ team, price, point }: SpreadProps) {
     <div
       className={`w-full flex gap-3 p-2 justify-center items-center cursor-pointer active:scale-95  ${
         isSelected
-          ? "bg-highlight text-primaryBg font-bold bg-opacity-80"
-          : "hover:bg-highlight hover:text-primaryBg hover:bg-opacity-40"
+          ? "bg-highlight text-primaryBg font-bold"
+          : "hover:bg-highlight hover:bg-opacity-40"
       }`}
       onClick={handleClick}
     >

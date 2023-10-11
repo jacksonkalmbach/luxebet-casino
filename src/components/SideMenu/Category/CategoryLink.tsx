@@ -37,7 +37,7 @@ export default function CategoryLink({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <p className="text-[#CCCCCC]">{title}</p>
+        <p className="text-[#CCCCCC] font-montserrat text-base">{title}</p>
         {isHovered && subCategories && (
           <div
             className={`transiton-all duration-200 ${

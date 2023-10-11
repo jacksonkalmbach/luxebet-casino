@@ -7,7 +7,8 @@ interface BalanceProps {
 export default function Balance({ balance }: BalanceProps) {
   return (
     <div className="text-white">
-      <span className="font-bold">Available Balance:</span> ${balance}
+      <span className="font-bold">Available Balance:</span> $
+      {balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function MatchUpSkeleton() {
   return (
-    <div className="w-full flex text-white p-2 bg-[#081a2f] rounded-lg animate-pulse">
+    <div className="w-full flex text-white p-2 bg-primaryBg rounded-lg animate-pulse">
       <div className="flex flex-col w-3/5 gap-2">
         <div className="bg-[#CCCCCC] w-1/4 rounded-full text-transparent cursor-default">
           date

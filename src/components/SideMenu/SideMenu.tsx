@@ -73,22 +73,15 @@ export default function SideMenu() {
           <div className="flex justify-center items-start">
             <div className=" transition-all duration-500 w-fit">
               {showMenuWords && (
-                <div className="flex flex-col justifya-center items-center">
-                  <p
-                    className="text-yellow-500 font-bold text-3xl"
-                    style={{
-                      textShadow: `
-      0 0 3px #fff9e0, 
-      0 0 6px #fff9e0, 
-      0 0 9px #ffd700, 
-      0 0 12px #ffd700, 
-      0 0 15px #ffd700
-    `,
-                    }}
-                  >
-                    LuxeBet
+                <div className="flex flex-col justify-center items-center">
+                  <div className="flex gap-2">
+                    <p className="text-primaryAccent font-bold font-lobster text-5xl">
+                      LuxeBet
+                    </p>
+                  </div>
+                  <p className="text-white font-bold text-base font-monserrat font-light">
+                    CASINO
                   </p>
-                  <p className="text-white font-bold text-base">- Casino -</p>
                 </div>
               )}
             </div>
@@ -96,13 +89,13 @@ export default function SideMenu() {
           {showMenuWords && (
             <div className="flex flex-col gap-4">
               <Category
-                title="Games"
+                title="GAMES"
                 category="games"
                 links={["Texas Hold'em", "Blackjack", "Roulette"]}
               />
               {sports.length && (
                 <Category
-                  title="Sportsbook"
+                  title="SPORTSBOOK"
                   category="sportsbook"
                   links={sports}
                   subCategories={subCategories}

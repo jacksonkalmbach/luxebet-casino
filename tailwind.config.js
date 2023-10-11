@@ -17,6 +17,10 @@ module.exports = {
         subduedText: "#7d7d7d",
         errorAlert: "#ff4747",
       },
+      fontFamily: {
+        lobster: ['"Lobster Two"', "sans-serif"],
+        montserrat: ["'Montserrat", "sans-serif"],
+      },
     },
   },
   plugins: [],
