@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import socket from "../../utils/socket";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import PokerTable from "../../components/PokerTable";
@@ -12,7 +11,15 @@ export default function TexasHoldEm() {
 
   const handleStartNewGame = () => {
     setStartGame(true);
-    fetch("http://localhost:5003/start-game");
+    fetch("http://localhost:5003/start-game", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        num_players: 3,
+      }),
+    });
   };
 
   return (
@@ -35,12 +42,16 @@ export default function TexasHoldEm() {
         </div>
       ) : (
         <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center border border-bgBorder overflow-hidden">
-          <button
-            onClick={handleStartNewGame}
-            className="bg-primaryAccent p-2 rounded active:scale-95"
-          >
-            Start New Game
-          </button>
+          <div className="flex flex-col gap-2">
+            <div className="text-white">How Many Players?</div>
+            <input />
+            <button
+              onClick={handleStartNewGame}
+              className="bg-primaryAccent p-2 rounded active:scale-95"
+            >
+              Start New Game
+            </button>
+          </div>
         </div>
       )}
     </div>

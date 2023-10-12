@@ -14,6 +14,7 @@ interface CardProps {
   isFaceUp?: boolean;
   absolute?: boolean;
   isFolded?: boolean;
+  isOpponent?: boolean;
 }
 
 const suits = {
@@ -30,6 +31,7 @@ export default function Card({
   isFaceUp,
   absolute,
   isFolded,
+  isOpponent,
 }: CardProps) {
   return (
     <div
@@ -46,31 +48,46 @@ export default function Card({
       }`}
     >
       {isFaceUp ? (
-        <div className="flex w-full h-full justify-between p-1">
-          <div className="flex flex-col items-center">
+        !isOpponent ? (
+          <div className="flex w-full h-full justify-between p-1">
+            <div className="flex flex-col items-center">
+              <div
+                className={`${
+                  suit === "H" || suit === "D" ? "text-red-500" : "text-black"
+                } text-sm`}
+              >
+                {value}
+              </div>
+              <div className="hidden text-black h-3 w-3">{suits[suit]}</div>
+            </div>
+            <div className="text-black w-full h-full flex justify-center items-center">
+              {suits[suit]}
+            </div>
+            <div className="hidden md:flex flex-col self-end rotate-180 items-center">
+              <div
+                className={`${
+                  suit === "H" || suit === "D" ? "text-red-500" : "text-black"
+                } text-sm`}
+              >
+                {value}
+              </div>
+              <div className="hidden flex text-black h-3 w-3">
+                {suits[suit]}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center">
             <div
               className={`${
                 suit === "H" || suit === "D" ? "text-red-500" : "text-black"
-              } text-sm`}
+              } text-base`}
             >
               {value}
             </div>
-            <div className="hidden text-black h-3 w-3">{suits[suit]}</div>
+            <div className="text-black h-4 w-4">{suits[suit]}</div>
           </div>
-          <div className="text-black w-full h-full flex justify-center items-center">
-            {suits[suit]}
-          </div>
-          <div className="hidden md:flex flex-col self-end rotate-180 items-center">
-            <div
-              className={`${
-                suit === "H" || suit === "D" ? "text-red-500" : "text-black"
-              } text-sm`}
-            >
-              {value}
-            </div>
-            <div className="flex text-black h-3 w-3">{suits[suit]}</div>
-          </div>
-        </div>
+        )
       ) : (
         <div
           className={`w-full h-full ${

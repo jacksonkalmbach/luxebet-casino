@@ -22,6 +22,7 @@ const initialSeats = {
     isTurn: false,
     isBigBlind: true,
     isLittleBlind: false,
+    isOccupied: true,
   },
   1: {
     className: "absolute -top-10 -right-14",
@@ -32,6 +33,7 @@ const initialSeats = {
     isTurn: true,
     isBigBlind: false,
     isLittleBlind: true,
+    isOccupied: true,
   },
   2: {
     className: "absolute top-[35%] -right-[25%]",
@@ -42,6 +44,7 @@ const initialSeats = {
     isTurn: false,
     isBigBlind: false,
     isLittleBlind: false,
+    isOccupied: true,
   },
   3: {
     className: "absolute -bottom-10 -right-10",
@@ -52,16 +55,18 @@ const initialSeats = {
     isTurn: false,
     isBigBlind: false,
     isLittleBlind: false,
+    isOccupied: true,
   },
   4: {
     className: "absolute top-[35%] -left-[25%]",
     side: "right",
-    playerName: "Cooper",
+    playerName: "",
     image: "https://robohash.org/4",
     cards: [],
     isTurn: false,
     isBigBlind: false,
     isLittleBlind: false,
+    isOccupied: false,
   },
 };
 
@@ -91,9 +96,14 @@ export default function PokerTable() {
       }));
     });
 
+    socket.on("place_bet", (data: any) => {
+      console.log("PLACE A BET");
+    });
+
     return () => {
       socket.off("blind_positions");
       socket.off("player_cards");
+      socket.off("place_bet");
     };
   }, []);
 

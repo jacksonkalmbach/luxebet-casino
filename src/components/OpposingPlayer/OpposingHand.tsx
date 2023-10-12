@@ -40,6 +40,7 @@ export default function OpposingHand({
             suit={card.suit}
             value={card.display_value}
             isFolded={isFolded}
+            isOpponent
           />
         </div>
       ))}
