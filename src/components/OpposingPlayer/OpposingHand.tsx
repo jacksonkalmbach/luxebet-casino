@@ -3,10 +3,11 @@ import Card from "../Card/Card";
 
 interface OpposingHandProps {
   side: "left" | "right";
-  cards: {
-    suit: "clubs" | "diamonds" | "hearts" | "spades";
-    value: string;
-  }[];
+  // cards: {
+  //   suit: "C" | "D" | "H" | "S";
+  //   value: string;
+  // }[];
+  cards: any;
   isFolded?: boolean;
   showCards?: boolean | undefined;
 }
@@ -26,7 +27,7 @@ export default function OpposingHand({
 
   return (
     <div className="absolute w-full">
-      {cards.map((card, index) => (
+      {cards.map((card: any, index: any) => (
         <div
           key={index}
           className={`absolute w-8 h-12 transition-all duration-200 ${
@@ -37,7 +38,7 @@ export default function OpposingHand({
             isFaceUp={showCards}
             tilt={index === 0 ? "left" : "right"}
             suit={card.suit}
-            value={card.value}
+            value={card.display_value}
             isFolded={isFolded}
           />
         </div>

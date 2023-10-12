@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type CardSuit = "hearts" | "diamonds" | "clubs" | "spades";
+type CardSuit = "H" | "D" | "C" | "S";
 type CardValue = string | number;
 
 interface CardType {
@@ -22,8 +22,8 @@ interface CardsState {
 const initialState: CardsState = {
   cardsOnTable: [],
   userHand: [
-    { suit: "hearts", value: 2 },
-    { suit: "spades", value: 8 },
+    { suit: "H", value: 2 },
+    { suit: "S", value: 8 },
   ],
 };
 

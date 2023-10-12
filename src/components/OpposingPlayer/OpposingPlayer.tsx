@@ -12,8 +12,9 @@ interface OpposingPlayerProps {
   name?: string;
   cards?:
     | {
-        suit: "clubs" | "diamonds" | "hearts" | "spades";
-        value: string;
+        suit: "D" | "C" | "H" | "S";
+        value: number;
+        display_value: string;
       }[];
   isTurn?: boolean;
   isFolded?: boolean;
@@ -86,7 +87,12 @@ export default function OpposingPlayer({
         )}
         {isOccupied && (
           <>
-            <OpposingHand side={side} cards={cards || []} isFolded={isFolded} />
+            <OpposingHand
+              side={side}
+              cards={cards || []}
+              isFolded={isFolded}
+              showCards
+            />
             <div
               className={`flex flex-col justify-center items-center w-full ${
                 side === "left" ? "ml-6" : "mr-6"

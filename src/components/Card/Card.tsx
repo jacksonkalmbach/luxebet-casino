@@ -5,7 +5,7 @@ import DiamondIcon from "../../icons/Suits/DiamondIcon";
 import HeartsIcon from "../../icons/Suits/HeartsIcon";
 import SpadesIcon from "../../icons/Suits/SpadesIcon";
 
-type CardSuit = "clubs" | "spades" | "hearts" | "diamonds";
+type CardSuit = "C" | "S" | "H" | "D";
 
 interface CardProps {
   tilt: "left" | "right" | "";
@@ -17,10 +17,10 @@ interface CardProps {
 }
 
 const suits = {
-  hearts: <HeartsIcon />,
-  diamonds: <DiamondIcon />,
-  clubs: <ClubsIcon />,
-  spades: <SpadesIcon />,
+  H: <HeartsIcon />,
+  D: <DiamondIcon />,
+  C: <ClubsIcon />,
+  S: <SpadesIcon />,
 };
 
 export default function Card({
@@ -50,9 +50,7 @@ export default function Card({
           <div className="flex flex-col items-center">
             <div
               className={`${
-                suit === "hearts" || suit === "diamonds"
-                  ? "text-red-500"
-                  : "text-black"
+                suit === "H" || suit === "D" ? "text-red-500" : "text-black"
               } text-sm`}
             >
               {value}
@@ -65,9 +63,7 @@ export default function Card({
           <div className="hidden md:flex flex-col self-end rotate-180 items-center">
             <div
               className={`${
-                suit === "hearts" || suit === "diamonds"
-                  ? "text-red-500"
-                  : "text-black"
+                suit === "H" || suit === "D" ? "text-red-500" : "text-black"
               } text-sm`}
             >
               {value}

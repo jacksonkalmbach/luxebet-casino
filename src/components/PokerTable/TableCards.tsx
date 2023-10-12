@@ -1,51 +1,74 @@
 import React, { useEffect, useState } from "react";
+import socket from "../../utils/socket";
 import Card from "../Card/Card";
 import CardOutline from "../Card/CardOutline";
 
 type CardDetail = {
-  suit: "hearts" | "spades" | "clubs" | "diamonds";
-  value: string | number;
-};
-type CardOrEmpty = CardDetail | null;
-
-const cardDetails: Record<number, CardOrEmpty> = {
-  1: { suit: "hearts", value: "A" },
-  2: { suit: "clubs", value: "K" },
-  3: { suit: "diamonds", value: "Q" },
-  4: { suit: "spades", value: "J" },
-  5: { suit: "hearts", value: 10 },
+  suit: "H" | "S" | "C" | "D";
+  value: number;
+  display_value: string;
 };
 
 export default function TableCards() {
-  const [cardsOnTable, setCardsOnTable] = useState<(number | null)[]>(
+  const [flopCards, setFlopCards] = useState<CardDetail[] | undefined>();
+  const [turnCard, setTurnCard] = useState();
+  const [riverCard, setRiverCard] = useState();
+  const [cardsOnTable, setCardsOnTable] = useState<(CardDetail | null)[]>(
     Array(5).fill(null)
   );
 
-  const dealFlopCards = () => {
-    setTimeout(() => setCardsOnTable([1, null, null, null, null]), 1000);
-    setTimeout(() => setCardsOnTable([1, 2, null, null, null]), 2000);
-    setTimeout(() => setCardsOnTable([1, 2, 3, null, null]), 3000);
-  };
+  useEffect(() => {
+    socket.on("flop_cards", (data: any) => {
+      setFlopCards(data);
+    });
 
-  const dealTurnCard = () => {
-    setTimeout(() => setCardsOnTable([1, 2, 3, 4, null]), 1000);
-  };
-
-  const dealRiverCard = () => {
-    setTimeout(() => setCardsOnTable([1, 2, 3, 4, 5]), 5000);
-  };
+    return () => {
+      socket.off("flop_cards");
+    };
+  }, []);
 
   useEffect(() => {
-    dealFlopCards();
-    setTimeout(() => dealTurnCard(), 5000);
-    setTimeout(() => dealRiverCard(), 5000);
-  }, []);
+    if (flopCards) dealFlopCards(Object.values(flopCards));
+  }, [flopCards]);
+
+  // useEffect(() => {
+  //   if (turnCard) dealTurnCard();
+  // }, [turnCard]);
+
+  // useEffect(() => {
+  //   if (riverCard) dealRiverCard();
+  // }, [riverCard]);
+
+  const dealFlopCards = (cards: CardDetail[]) => {
+    setTimeout(() => setCardsOnTable([cards[0], null, null, null, null]), 1000);
+    setTimeout(
+      () => setCardsOnTable([cards[0], cards[1], null, null, null]),
+      2000
+    );
+    setTimeout(
+      () => setCardsOnTable([cards[0], cards[1], cards[2], null, null]),
+      3000
+    );
+  };
+
+  // const dealTurnCard = (cards: CardDetail[]) => {
+  //   setTimeout(() => setCardsOnTable([cards[0], card[1], cards[2], cards[3], null]), 1000);
+  // };
+
+  // const dealRiverCard = () => {
+  //   setTimeout(() => setCardsOnTable([1, 2, 3, 4, 5]), 5000);
+  // };
+
+  // useEffect(() => {
+  //   dealFlopCards();
+  //   setTimeout(() => dealTurnCard(), 5000);
+  //   setTimeout(() => dealRiverCard(), 5000);
+  // }, []);
 
   return (
     <div>
       <div className="flex justify-center items-center gap-2">
-        {cardsOnTable.map((cardId, index) => {
-          const card = cardId !== null ? cardDetails[cardId] : null;
+        {cardsOnTable.map((card, index) => {
           return (
             <div className="w-8 h-12 md:w-20 md:h-28" key={index}>
               {card ? (
@@ -53,7 +76,7 @@ export default function TableCards() {
                   isFaceUp
                   suit={card.suit}
                   tilt=""
-                  value={card.value}
+                  value={card.display_value}
                   absolute={false}
                 />
               ) : (

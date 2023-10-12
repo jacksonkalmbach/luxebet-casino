@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import socket from "../utils/socket";
 import { useSelector } from "react-redux";
 
 import OpposingPlayer from "./OpposingPlayer/OpposingPlayer";
@@ -10,10 +11,9 @@ import Bets from "./PokerTable/Bets";
 import Timer from "./Timer/Timer";
 
 import { RootState } from "../store/store";
-import { selectPlayerUp } from "../store/features/game/pokerSlice";
 
-const seats = {
-  1: {
+const initialSeats = {
+  0: {
     className: "absolute -top-10 -left-14",
     side: "right",
     playerName: "Seb",
@@ -23,7 +23,7 @@ const seats = {
     isBigBlind: true,
     isLittleBlind: false,
   },
-  2: {
+  1: {
     className: "absolute -top-10 -right-14",
     side: "left",
     playerName: "Jackson",
@@ -33,7 +33,7 @@ const seats = {
     isBigBlind: false,
     isLittleBlind: true,
   },
-  3: {
+  2: {
     className: "absolute top-[35%] -right-[25%]",
     side: "left",
     playerName: "Chris",
@@ -43,7 +43,7 @@ const seats = {
     isBigBlind: false,
     isLittleBlind: false,
   },
-  4: {
+  3: {
     className: "absolute -bottom-10 -right-10",
     side: "left",
     playerName: "Parker",
@@ -53,7 +53,7 @@ const seats = {
     isBigBlind: false,
     isLittleBlind: false,
   },
-  5: {
+  4: {
     className: "absolute top-[35%] -left-[25%]",
     side: "right",
     playerName: "Cooper",
@@ -67,6 +67,35 @@ const seats = {
 
 export default function PokerTable() {
   const playerTurn = useSelector((state: RootState) => state.poker.playerUp);
+  const [seatsState, setSeatsState] = useState(initialSeats);
+
+  useEffect(() => {
+    socket.on("blind_positions", (data: any) => {
+      setSeatsState((prevState: any) => {
+        let updatedSeats = { ...prevState };
+        Object.keys(prevState).forEach((key) => {
+          updatedSeats[key].isBigBlind = Number(key) === data.bb_pos;
+          updatedSeats[key].isLittleBlind = Number(key) === data.sb_pos;
+        });
+        return updatedSeats;
+      });
+    });
+
+    socket.on("player_cards", (data: any) => {
+      setSeatsState((prevState: any) => ({
+        ...prevState,
+        [data.player_id]: {
+          ...prevState[data.player_id],
+          cards: [data.first_card, data.second_card],
+        },
+      }));
+    });
+
+    return () => {
+      socket.off("blind_positions");
+      socket.off("player_cards");
+    };
+  }, []);
 
   return (
     <div className="relative bg-secondaryAccent w-[80%] md:w-[65%] flex flex-col justify-center items-center rounded-full h-[70%] md:h-[60%] border-[#fad255]  border-8 md:border-[20px] shadow-2xl mb-[5%]">
@@ -77,13 +106,13 @@ export default function PokerTable() {
         <Dealer />
       </div>
       <div>
-        {Object.keys(seats).map((key) => {
-          const seat = key as unknown as keyof typeof seats;
+        {Object.keys(seatsState).map((key) => {
+          const seat = key as unknown as keyof typeof seatsState;
           const { isBigBlind, isLittleBlind, side, playerName, image, cards } =
-            seats[seat];
+            seatsState[seat];
           return (
-            <div key={seat} className={seats[seat].className}>
-              {seats[seat].playerName !== "" ? (
+            <div key={seat} className={seatsState[seat].className}>
+              {seatsState[seat].playerName !== "" ? (
                 <OpposingPlayer
                   side={side as "left" | "right"}
                   name={playerName}
@@ -97,7 +126,7 @@ export default function PokerTable() {
                 />
               ) : (
                 <OpposingPlayer
-                  side={seats[seat].side as "left" | "right"}
+                  side={seatsState[seat].side as "left" | "right"}
                   isOccupied={false}
                 />
               )}
