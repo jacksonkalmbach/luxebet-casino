@@ -11,8 +11,8 @@ type CardDetail = {
 
 export default function TableCards() {
   const [flopCards, setFlopCards] = useState<CardDetail[] | undefined>();
-  const [turnCard, setTurnCard] = useState();
-  const [riverCard, setRiverCard] = useState();
+  const [turnCard, setTurnCard] = useState<CardDetail[] | undefined>();
+  const [riverCard, setRiverCard] = useState<CardDetail[] | undefined>();
   const [cardsOnTable, setCardsOnTable] = useState<(CardDetail | null)[]>(
     Array(5).fill(null)
   );
@@ -22,8 +22,18 @@ export default function TableCards() {
       setFlopCards(data);
     });
 
+    socket.on("turn_card", (data: any) => {
+      setTurnCard(data);
+    });
+
+    socket.on("river_card", (data: any) => {
+      setRiverCard(data);
+    });
+
     return () => {
       socket.off("flop_cards");
+      socket.off("turn_card");
+      socket.off("river_card");
     };
   }, []);
 
@@ -31,13 +41,13 @@ export default function TableCards() {
     if (flopCards) dealFlopCards(Object.values(flopCards));
   }, [flopCards]);
 
-  // useEffect(() => {
-  //   if (turnCard) dealTurnCard();
-  // }, [turnCard]);
+  useEffect(() => {
+    if (turnCard) dealTurnCard(Object.values(turnCard));
+  }, [turnCard]);
 
-  // useEffect(() => {
-  //   if (riverCard) dealRiverCard();
-  // }, [riverCard]);
+  useEffect(() => {
+    if (riverCard) dealRiverCard(Object.values(riverCard));
+  }, [riverCard]);
 
   const dealFlopCards = (cards: CardDetail[]) => {
     setTimeout(() => setCardsOnTable([cards[0], null, null, null, null]), 1000);
@@ -51,19 +61,19 @@ export default function TableCards() {
     );
   };
 
-  // const dealTurnCard = (cards: CardDetail[]) => {
-  //   setTimeout(() => setCardsOnTable([cards[0], card[1], cards[2], cards[3], null]), 1000);
-  // };
+  const dealTurnCard = (cards: CardDetail[]) => {
+    setTimeout(
+      () => setCardsOnTable([cards[0], cards[1], cards[2], cards[3], null]),
+      1000
+    );
+  };
 
-  // const dealRiverCard = () => {
-  //   setTimeout(() => setCardsOnTable([1, 2, 3, 4, 5]), 5000);
-  // };
-
-  // useEffect(() => {
-  //   dealFlopCards();
-  //   setTimeout(() => dealTurnCard(), 5000);
-  //   setTimeout(() => dealRiverCard(), 5000);
-  // }, []);
+  const dealRiverCard = (cards: CardDetail[]) => {
+    setTimeout(
+      () => setCardsOnTable([cards[0], cards[1], cards[2], cards[3], cards[4]]),
+      1000
+    );
+  };
 
   return (
     <div>
