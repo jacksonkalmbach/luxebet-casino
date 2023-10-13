@@ -69,13 +69,22 @@ export default function Header() {
               <p className="hover:text-primaryAccent cursor-pointer">
                 My Account
               </p>
-              <p className="hover:text-primaryAccent cursor-pointer">My Bets</p>
+              <p
+                className="hover:text-primaryAccent cursor-pointer"
+                onClick={() => {
+                  setIsOpen(false);
+                  navigate("/sportsbook/mybets");
+                }}
+              >
+                My Bets
+              </p>
               <p className="hover:text-primaryAccent cursor-pointer">Contact</p>
               <p
                 className="hover:text-primaryAccent mt-4 cursor-pointer"
                 onClick={() => {
                   dispatch(setUserLogIn(false));
                   setIsOpen(false);
+                  navigate("/");
                 }}
               >
                 Sign Out

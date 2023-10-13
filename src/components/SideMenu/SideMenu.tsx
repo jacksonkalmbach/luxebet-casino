@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ChevronLeftIcon from "../../icons/ChevronLeftIcon";
-import SpadesIcon from "../../icons/Suits/SpadesIcon";
+import { useNavigate } from "react-router-dom";
 
 import Category from "./Category/Category";
 
@@ -16,6 +15,7 @@ const options = {
 };
 
 export default function SideMenu() {
+  const navigate = useNavigate();
   const [subCategories, setSubCategories] = useState<{
     [key: string]: { key: string; title: string }[];
   }>();
@@ -61,7 +61,10 @@ export default function SideMenu() {
             <div className="flex justify-center items-start">
               <div className=" transition-all duration-500 w-fit">
                 <div className="flex flex-col justify-center items-center">
-                  <div className="flex gap-2">
+                  <div
+                    className="flex gap-2 cursor-pointer"
+                    onClick={() => navigate("/")}
+                  >
                     <p className="text-primaryAccent font-bold font-lobster text-5xl">
                       LuxeBet
                     </p>

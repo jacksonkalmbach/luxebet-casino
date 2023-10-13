@@ -7,7 +7,7 @@ export default function MyBetFilters() {
       <p
         className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
           filter === "ALL"
-            ? "bg-primaryBg font-bold text-fontLight"
+            ? "bg-primaryBg font-bold text-white"
             : "text-subduedText"
         }`}
         onClick={() => setFilter("ALL")}
@@ -17,7 +17,7 @@ export default function MyBetFilters() {
       <p
         className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
           filter === "OPEN"
-            ? "bg-primaryBg font-bold text-fontLight"
+            ? "bg-primaryBg font-bold text-white"
             : "text-subduedText"
         }`}
         onClick={() => setFilter("OPEN")}
@@ -27,7 +27,7 @@ export default function MyBetFilters() {
       <p
         className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
           filter === "SETTLED"
-            ? "bg-primaryBg font-bold text-fontLight"
+            ? "bg-primaryBg font-bold text-white"
             : "text-subduedText"
         }`}
         onClick={() => setFilter("SETTLED")}
@@ -37,7 +37,7 @@ export default function MyBetFilters() {
       <p
         className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
           filter === "WON"
-            ? "bg-primaryBg font-bold text-fontLight"
+            ? "bg-primaryBg font-bold text-white"
             : "text-subduedText"
         }`}
         onClick={() => setFilter("WON")}
@@ -47,7 +47,7 @@ export default function MyBetFilters() {
       <p
         className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
           filter === "LOST"
-            ? "bg-primaryBg font-bold text-fontLight"
+            ? "bg-primaryBg font-bold text-white"
             : "text-subduedText"
         }`}
         onClick={() => setFilter("LOST")}
