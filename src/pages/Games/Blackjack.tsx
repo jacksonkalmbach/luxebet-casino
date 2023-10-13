@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Card from "../../components/Card/Card";
@@ -9,6 +9,7 @@ import carpetImg from "../../photos/carpet.jpg";
 
 export default function Blackjack() {
   const navigate = useNavigate();
+  const [showChips, setShowChips] = useState<boolean>(false);
   return (
     <div className="flex w-full h-full p-4 bg-transparent">
       <div
@@ -59,22 +60,34 @@ export default function Blackjack() {
           <button className="p-2 bg-brightBlue rounded-xl font-oneset text-fontLight active:scale-95">
             DEAL
           </button>
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-5 p-4 rounded-xl ">
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex justify-center items-center gap-5 p-4 rounded-xl">
             <div className="relative w-20 hover:scale-110 transition-all duration-200 cursor-pointer">
               <PokerChip color="#e0dfdf" />
             </div>
-            <div className="relative w-20 hover:scale-110 transition-all duration-200 cursor-pointer">
-              <PokerChip color="#8b1b13" />
-            </div>
-            <div className="relative w-20 hover:scale-110 transition-all duration-200 cursor-pointer">
-              <PokerChip color="#1b2a70" />
-            </div>
-            <div className="relative w-20 hover:scale-110 transition-all duration-200 cursor-pointer">
-              <PokerChip color="#31b20e" />
-            </div>
-            <div className="relative w-20 hover:scale-110 transition-all duration-200 cursor-pointer">
-              <PokerChip color="black" />
-            </div>
+
+            {showChips ? (
+              <>
+                <div className="relative w-20 hover:scale-110 transition-all duration-200 cursor-pointer">
+                  <PokerChip color="#8b1b13" />
+                </div>
+                <div className="relative w-20 hover:scale-110 transition-all duration-200 cursor-pointer">
+                  <PokerChip color="#1b2a70" />
+                </div>
+                <div className="relative w-20 hover:scale-110 transition-all duration-200 cursor-pointer">
+                  <PokerChip color="#31b20e" />
+                </div>
+                <div className="relative w-20 hover:scale-110 transition-all duration-200 cursor-pointer">
+                  <PokerChip color="black" />
+                </div>
+              </>
+            ) : (
+              <button
+                className="p-2 bg-brightBlue rounded-xl h-fit font-oneset text-fontLight active:scale-95"
+                onClick={() => setShowChips(true)}
+              >
+                Change Bet
+              </button>
+            )}
           </div>
         </div>
         <div className="absolute right-16 top-1/2 transform -translate-y-1/2 flex flex-col p-6 rounded-xl h-3/4 w-48 justify-around">
