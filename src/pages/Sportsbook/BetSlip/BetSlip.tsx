@@ -14,6 +14,7 @@ export default function BetSlip() {
     selectFullBetSlip(state)
   );
 
+  const [showFullBetSlip, setShowFullBetSlip] = useState<boolean>(false);
   const [betSlipSum, setBetSlipSum] = useState(0);
   const [pickAmounts, setPickAmounts] = useState<Record<string, number>>({});
 
@@ -41,7 +42,7 @@ export default function BetSlip() {
   };
 
   return (
-    <div className="hidden lg:flex p-6 rounded-xl w-full h-full flex flex-col bg-secondaryBg shadow-xl overflow-auto">
+    <div className="md:static md:left-auto md:bottom-auto md:bg-secondaryBg absolute left-0 bottom-0 bg-tertiaryBg h-fit lg:flex p-6 rounded-xl w-full lg:h-full flex-col bg-secondaryBg shadow-xl overflow-auto">
       <div className="flex w-full justify-between items-center border-b">
         <div className="flex gap-1 items-center">
           <div className="text-fontLight font-oneset text-2xl p-2 font-bold">
@@ -71,7 +72,11 @@ export default function BetSlip() {
           </p>
         </div>
       ) : (
-        <div className="flex flex-col gap-2 justify-start h-full">
+        <div
+          className={`${
+            showFullBetSlip ? "" : "hidden"
+          } md:flex flex-col gap-2 justify-start h-full`}
+        >
           <div className="flex flex-col w-full h-full">
             {picksArray.map((pick) => {
               const { team, price, point, betType } = pick;

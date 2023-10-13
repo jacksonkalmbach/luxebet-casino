@@ -112,7 +112,7 @@ export default function MatchUp({
             h2h ? "w-1/5" : "w-2/5"
           } justify-start items-center gap-2`}
         >
-          <div className="border-b w-full flex justify-center font-oneset text-fontLight items-center cursor-default md:pl-4 text-xs md:text-base">
+          <div className="border-b w-full flex justify-center font-oneset text-fontLight items-center cursor-default text-xs md:text-base">
             <p className="block md:hidden">SPR.</p>
             <p className="hidden md:block">SPREAD</p>
           </div>

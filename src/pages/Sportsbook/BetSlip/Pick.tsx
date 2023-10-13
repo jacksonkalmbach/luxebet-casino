@@ -50,7 +50,7 @@ export default function Pick({
               {team}
             </p>
           </div>
-          <p className="text-xs text-fontLight font-oneset">{price}</p>
+          <p className="text-xs text-fontLight font-oneset">{price > 0 && "+"}{price}</p>
         </div>
         <p className="text-xs text-fontLight font-oneset">
           {betType} {point ? (point > 0 ? `+${point}` : point) : ""}
