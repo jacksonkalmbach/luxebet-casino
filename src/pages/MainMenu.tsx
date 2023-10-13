@@ -77,7 +77,7 @@ export default function MainMenu() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
             }}
-            onClick={() => handleNavigate("games", "texas hold'em")}
+            onClick={() => handleNavigate("games", "texas hold'em", "")}
           >
             <p className="font-oneset w-full h-full text-white z-10 bg-primaryBg flex justify-center items-center p-2 bg-opacity-80 hover:bg-opacity-0 transition-all duration-300">
               Texas Hold'em
@@ -91,7 +91,7 @@ export default function MainMenu() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
             }}
-            onClick={() => handleNavigate("games", "blackjack")}
+            onClick={() => handleNavigate("games", "blackjack", "")}
           >
             <p className="font-oneset w-full h-full text-white z-10 bg-primaryBg flex justify-center items-center p-2 bg-opacity-80 hover:bg-opacity-0 transition-all duration-300">
               Blackjack
@@ -105,7 +105,7 @@ export default function MainMenu() {
               backgroundRepeat: "no-repeat",
               backgroundPosition: "center",
             }}
-            onClick={() => handleNavigate("games", "roulette")}
+            onClick={() => handleNavigate("games", "roulette", "")}
           >
             <p className="font-oneset w-full h-full text-white z-10 bg-primaryBg flex justify-center items-center p-2 bg-opacity-80 hover:bg-opacity-0 transition-all duration-300">
               Roulette

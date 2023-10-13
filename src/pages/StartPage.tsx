@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import AuthMain from "./Auth/AuthMain";
@@ -7,8 +7,11 @@ import MainMenu from "./MainMenu";
 import {
   selectUserLoginStatus,
   setUserLogIn,
+  setUserName,
 } from "../store/features/user/userSlice";
 import { RootState } from "../store/store";
+
+import { guestUsernames } from "../utils/guest/guestUsernames";
 
 export default function StartPage() {
   const dispatch = useDispatch();
@@ -18,6 +21,11 @@ export default function StartPage() {
 
   const handleGuestLogin = () => {
     dispatch(setUserLogIn(true));
+    dispatch(
+      setUserName(
+        guestUsernames[Math.floor(Math.random() * guestUsernames.length)]
+      )
+    );
   };
 
   return (

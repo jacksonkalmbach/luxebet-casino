@@ -28,7 +28,7 @@ export default function CategoryLink({
   return (
     <>
       <div
-        className="flex ml-3 hover:underline cursor-pointer justify-between items-center"
+        className="flex ml-3 cursor-pointer justify-between items-center"
         onClick={
           subCategories
             ? handleToggleOpen

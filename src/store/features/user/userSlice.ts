@@ -8,7 +8,7 @@ interface UserState {
 
 const initialState: UserState = {
   username: "",
-  balance: 500,
+  balance: 1000,
   isLoggedIn: false,
 };
 
@@ -25,15 +25,24 @@ const userSlice = createSlice({
     setUserLogIn(state, action: PayloadAction<boolean>) {
       state.isLoggedIn = action.payload;
     },
+    setUserName(state, action: PayloadAction<string>) {
+      state.username = action.payload;
+    },
   },
 });
 
-export const { incrementUserBalance, decrementUserBalance, setUserLogIn } =
-  userSlice.actions;
+export const {
+  incrementUserBalance,
+  decrementUserBalance,
+  setUserLogIn,
+  setUserName,
+} = userSlice.actions;
 
 export const selectUserBalance = (state: { user: UserState }) =>
   state.user.balance;
 export const selectUserLoginStatus = (state: { user: UserState }) =>
   state.user.isLoggedIn;
+export const selectUsername = (state: { user: UserState }) =>
+  state.user.username;
 
 export default userSlice.reducer;

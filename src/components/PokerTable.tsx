@@ -10,6 +10,8 @@ import TableCards from "./PokerTable/TableCards";
 import Bets from "./PokerTable/Bets";
 import Timer from "./Timer/Timer";
 
+import feltImg from "../photos/felt.jpg";
+
 import { RootState } from "../store/store";
 
 const initialSeats = {
@@ -108,7 +110,15 @@ export default function PokerTable() {
   }, []);
 
   return (
-    <div className="relative bg-secondaryAccent w-[80%] md:w-[65%] flex flex-col justify-center items-center rounded-full h-[70%] md:h-[60%] border-[#fad255]  border-8 md:border-[20px] shadow-2xl mb-[5%]">
+    <div
+      className="relative bg-secondaryAccent w-[80%] md:w-[65%] flex flex-col justify-center items-center rounded-full h-[70%] md:h-[60%] border-[#fad255]  border-8 md:border-[20px] shadow-2xl mb-[5%]"
+      style={{
+        backgroundImage: `url(${feltImg})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+      }}
+    >
       <Bets />
       <Pot />
       <TableCards />

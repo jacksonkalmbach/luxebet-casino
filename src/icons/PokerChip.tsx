@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function PokerChip() {
+export default function PokerChip({ color }: { color?: string }) {
   return (
     <svg
-      fill="#559ef8"
+      fill={color ? color : "#559ef8"}
       height="100%"
       width="100%"
       version="1.1"
