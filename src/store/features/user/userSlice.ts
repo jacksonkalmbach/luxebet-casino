@@ -22,12 +22,18 @@ const userSlice = createSlice({
     decrementUserBalance(state, action: PayloadAction<number>) {
       state.balance -= action.payload;
     },
+    setUserLogIn(state, action: PayloadAction<boolean>) {
+      state.isLoggedIn = action.payload;
+    },
   },
 });
 
-export const { incrementUserBalance, decrementUserBalance } = userSlice.actions;
+export const { incrementUserBalance, decrementUserBalance, setUserLogIn } =
+  userSlice.actions;
 
 export const selectUserBalance = (state: { user: UserState }) =>
   state.user.balance;
+export const selectUserLoginStatus = (state: { user: UserState }) =>
+  state.user.isLoggedIn;
 
 export default userSlice.reducer;

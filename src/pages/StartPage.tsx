@@ -1,12 +1,23 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import AuthMain from "./Auth/AuthMain";
 import MainMenu from "./MainMenu";
 
+import {
+  selectUserLoginStatus,
+  setUserLogIn,
+} from "../store/features/user/userSlice";
+import { RootState } from "../store/store";
+
 export default function StartPage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state: RootState) =>
+    selectUserLoginStatus(state)
+  );
 
   const handleGuestLogin = () => {
-    setIsLoggedIn(true);
+    dispatch(setUserLogIn(true));
   };
 
   return (

@@ -6,9 +6,9 @@ interface AuthMainProps {
 
 export default function AuthMain({ onGuestLogIn }: AuthMainProps) {
   return (
-    <div className="relative flex flex-col w-full h-full bg-[#0a1f3b] rounded-2xl justify-center items-center border border-[#1c314c]">
-      <div className="flex flex-col border rounded-lg p-8 flex justify-center items-center gap-4">
-        <h1 className="text-[#CCCCCC] text-2xl font-bold">Login</h1>
+    <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center">
+      <div className="flex flex-col border rounded-lg p-8 flex justify-center items-center gap-4 font-oneset">
+        <h1 className="text-fontLight text-2xl font-bold">Login</h1>
         <input className="w-full h-10 rounded-lg p-2" placeholder="Username" />
         <input
           className="w-full h-10 rounded-lg p-2"
@@ -19,7 +19,7 @@ export default function AuthMain({ onGuestLogIn }: AuthMainProps) {
           Login
         </button>
         <p
-          className="text-[#CCCCCC] hover:underline cursor-pointer"
+          className="text-fontLight hover:underline cursor-pointer"
           onClick={onGuestLogIn}
         >
           Continue as guest
