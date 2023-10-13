@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import ChevronDownIcon from "../../../icons/ChevronDownIcon";
+import React from "react";
 import CategoryLink from "./CategoryLink";
 
 interface CategoryProps {
@@ -21,7 +19,7 @@ export default function Category({
   return (
     <div className="flex flex-col gap-2">
       <div className="flex w-full justify-start">
-        <p className="font-bold cursor-default font-montserrat font-semibold">
+        <p className="font-bold cursor-default font-oneset text-fontLight">
           {title}
         </p>
       </div>

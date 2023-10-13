@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import Balance from "../Balance/Balance";
@@ -19,11 +19,11 @@ export default function Header() {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="w-full flex bg-secondaryBg border-b border-bgBorder justify-end items-center py-3 px-6 gap-10">
+    <div className="w-full h-full flex bg-secondaryBg justify-end items-center py-3 px-6 gap-10 rounded-xl">
       {segment === "sportsbook" && (
         <>
           <div
-            className="text-white cursor-pointer font-bold hover:text-[#eec23e] transition-all duration-200 ease-in-out"
+            className="cursor-pointer font-oneset text-fontLight font-bold hover:text-[#eec23e] transition-all duration-200 ease-in-out"
             onClick={() => navigate("/sportsbook/mybets")}
           >
             My Bets
@@ -35,7 +35,7 @@ export default function Header() {
         </>
       )}
       <div className="flex gap-3 justify-center items-center cursor-pointer">
-        <div className="text-white">jacksonkalmbach</div>
+        <div className="text-fontLight font-oneset">jacksonkalmbach</div>
         <div
           className={`${
             !isOpen ? "" : "rotate-180"

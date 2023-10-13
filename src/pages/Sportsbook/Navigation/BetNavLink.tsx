@@ -24,8 +24,8 @@ export default function BetNavLink({
       className={`${
         active === title
           ? "text-primaryAccent border-primaryAccent font-bold"
-          : "text-white border-transparent"
-      } cursor-pointer border-b-2 pb-2 w-[100px] flex justify-center items-center transition-all duration-200 ease-in-out`}
+          : "text-fontLight border-transparent"
+      } cursor-pointer font-oneset border-b-2 pb-2 w-[100px] flex justify-center items-center transition-all duration-200 ease-in-out`}
       onClick={handleClick}
     >
       {title}

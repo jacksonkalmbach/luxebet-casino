@@ -41,16 +41,18 @@ export default function Pick({
         className="h-full pt-3 cursor-pointer active:scale-95"
         onClick={handleRemovePick}
       >
-        <CloseIcon color="black" />
+        <CloseIcon color="#e0dfdf" />
       </div>
       <div className="flex flex-col py-3 w-3/5">
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
-            <p className="font-bold text-xs">{team}</p>
+            <p className="font-bold text-fontLight font-oneset text-xs">
+              {team}
+            </p>
           </div>
-          <p className="text-xs">{price}</p>
+          <p className="text-xs text-fontLight font-oneset">{price}</p>
         </div>
-        <p className="text-xs">
+        <p className="text-xs text-fontLight font-oneset">
           {betType} {point ? (point > 0 ? `+${point}` : point) : ""}
         </p>
       </div>
@@ -66,7 +68,9 @@ export default function Pick({
           }}
         ></input>
         {payout > 0 && (
-          <p className="text-[10px] text-center w-full">Payout: ${payout} </p>
+          <p className="text-[10px] text-center w-full font-oneset text-fontLight">
+            Payout: ${payout}{" "}
+          </p>
         )}
       </div>
     </div>

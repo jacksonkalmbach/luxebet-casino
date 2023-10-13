@@ -17,15 +17,15 @@ export default function TexasHoldEm() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        num_players: 3,
+        num_players: 5,
       }),
     });
   };
 
   return (
-    <div className="flex w-full h-full p-8 bg-transparent">
+    <div className="flex w-full h-full p-4 bg-transparent">
       {startGame ? (
-        <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center border border-bgBorder overflow-hidden">
+        <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center overflow-hidden">
           <div className="absolute top-5 left-10 cursor-pointer active:scale-95">
             <button
               className="flex gap-2 px-3 py-2 rounded hover:bg-primaryBg group"
@@ -41,7 +41,7 @@ export default function TexasHoldEm() {
           <TurnOptions />
         </div>
       ) : (
-        <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center border border-bgBorder overflow-hidden">
+        <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center overflow-hidden">
           <div className="flex flex-col gap-2">
             <div className="text-white">How Many Players?</div>
             <input />

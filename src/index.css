@@ -15,3 +15,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@font-face {
+  font-family: "Oneset";
+  src: url(/public/assets/fonts/onest/TTF/OnestMedium1602-hint.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oneset";
+  src: url(/public/assets/fonts/onest/TTF/OnestBold1602-hint.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Oneset";
+  src: url(/public/assets/fonts/onest/TTF/OnestThin1602-hint.ttf);
+  font-weight: 100;
+  font-style: normal;
+}

@@ -14,7 +14,7 @@ export default function MainMenu() {
   };
 
   return (
-    <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-start items-center p-10 border border-bgBorder gap-10">
+    <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-start items-center border border-bgBorder gap-10">
       <div className="w-full flex flex-col h-2/5 gap-3">
         <h1 className="text-white text-3xl font-bold">Games</h1>
         <div className="flex gap-4 h-full w-full">

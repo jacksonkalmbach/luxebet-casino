@@ -50,12 +50,14 @@ export default function Spread({ team, price, point }: SpreadProps) {
       onClick={handleClick}
     >
       <div
-        className={`${isSelected ? "text-subduedText" : "text-primaryAccent"}`}
+        className={`font-oneset ${
+          isSelected ? "text-subduedText" : "text-primaryAccent"
+        }`}
       >
         {point > 0 && "+"}
         {point}
       </div>
-      <div className="">
+      <div className="font-oneset text-fontLight">
         {price > 0 && "+"}
         {price}
       </div>

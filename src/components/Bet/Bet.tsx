@@ -16,7 +16,7 @@ export default function Bet({ amount, side = "left" }: BetProps) {
       >
         <PokerChip />
       </div>
-      <div className={`text-white ${side === "left" ? "mr-5" : "ml-5"}`}>
+      <div className={`text-fontLight font-oneset ${side === "left" ? "mr-5" : "ml-5"}`}>
         {amount}
       </div>
     </div>

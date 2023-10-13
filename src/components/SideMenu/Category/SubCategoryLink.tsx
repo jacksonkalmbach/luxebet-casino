@@ -19,7 +19,7 @@ export default function SubCategoryLink({
   return (
     <p
       key={subCategory.key}
-      className="flex ml-6 hover:underline text-sm cursor-pointer items-center text-[#CCCCCC]"
+      className="flex ml-6 hover:underline text-sm cursor-pointer items-center text-fontLight font-oneset"
       onClick={() => handleNavigate(subCategory.title)}
     >
       {subCategory.title}

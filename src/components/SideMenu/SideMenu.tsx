@@ -16,8 +16,6 @@ const options = {
 };
 
 export default function SideMenu() {
-  const [miniMenu, setMiniMenu] = useState(false);
-  const [showMenuWords, setShowMenuWords] = useState(true);
   const [subCategories, setSubCategories] = useState<{
     [key: string]: { key: string; title: string }[];
   }>();
@@ -52,46 +50,29 @@ export default function SideMenu() {
     }
   }, []);
 
-  const handleToggleMiniMenu = () => {
-    setMiniMenu(!miniMenu);
-    if (miniMenu) {
-      setTimeout(() => {
-        setShowMenuWords(true);
-      }, 300);
-    } else {
-      setShowMenuWords(false);
-    }
-  };
-
   return (
     <>
       <div
-        className={`hidden md:flex flex-col overflow-auto ${
-          miniMenu ? "w-[5%]" : "w-[20%]"
-        } h-full bg-secondaryBg text-white rounded-l-lg border-r border-bgBorder p-4 justify-center items-center justify-between transition-all duration-500`}
+        className="hidden md:flex flex-col 
+           w-[20%] h-full bg-primaryBg py-4 pl-4 justify-center items-center justify-between"
       >
-        <div className="flex flex-col gap-4 w-full p-6">
-          <div className="flex justify-center items-start">
-            <div className=" transition-all duration-500 w-fit">
-              {showMenuWords ? (
+        <div className="bg-secondaryBg w-full h-full rounded-xl overflow-auto">
+          <div className="flex flex-col gap-4 w-full p-6">
+            <div className="flex justify-center items-start">
+              <div className=" transition-all duration-500 w-fit">
                 <div className="flex flex-col justify-center items-center">
                   <div className="flex gap-2">
                     <p className="text-primaryAccent font-bold font-lobster text-5xl">
                       LuxeBet
                     </p>
                   </div>
-                  <p className="text-white font-bold text-base font-monserrat font-light">
+                  <p className="text-fontLight font-bold text-base font-oneset font-light">
                     CASINO
                   </p>
                 </div>
-              ) : (
-                <div className="w-12 h-12">
-                  <SpadesIcon isLogo />
-                </div>
-              )}
+              </div>
             </div>
-          </div>
-          {showMenuWords && (
+
             <div className="flex flex-col gap-4">
               <Category
                 title="GAMES"
@@ -107,29 +88,8 @@ export default function SideMenu() {
                 />
               )}
             </div>
-          )}
+          </div>
         </div>
-
-        <button
-          onClick={handleToggleMiniMenu}
-          className={
-            "flex items-center justify-center border p-2 rounded-full bg-[#CCCCCC] opacity-40 hover:opacity-100"
-          }
-        >
-          <div
-            className={`transition-all duration-500 ${
-              miniMenu ? "rotate-180" : ""
-            }`}
-          >
-            <ChevronLeftIcon color="#1c314c" />{" "}
-          </div>
-          <div
-            className="overflow-hidden transition-all duration-500"
-            style={{ width: miniMenu ? 0 : "100px" }}
-          >
-            {showMenuWords && <p className="text-[#1c314c]">Hide Menu</p>}
-          </div>
-        </button>
       </div>
     </>
   );

@@ -91,19 +91,23 @@ export default function OpposingPlayer({
               side={side}
               cards={cards || []}
               isFolded={isFolded}
-              showCards
+              showCards={false}
             />
             <div
               className={`flex flex-col justify-center items-center w-full ${
                 side === "left" ? "ml-6" : "mr-6"
               }`}
             >
-              <p className="text-white font-semibold text-sm">{name}</p>
+              <p className="text-fontLight font-oneset font-semibold text-sm">
+                {name}
+              </p>
               <div className="flex gap-1 justify-center items-center">
                 <div className="h-4 w-4">
                   <PokerChip />
                 </div>
-                <p className="text-white">{playerBalanceWithCommas}</p>
+                <p className="text-fontLight font-oneset">
+                  {playerBalanceWithCommas}
+                </p>
               </div>
             </div>
           </>

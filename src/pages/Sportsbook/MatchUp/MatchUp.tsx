@@ -98,7 +98,7 @@ export default function MatchUp({
   return (
     <div className="w-full flex text-white p-2 bg-primaryBg rounded-lg">
       <div className="flex flex-col w-3/5 gap-2">
-        <div className="border-b cursor-default">
+        <div className="border-b cursor-default font-oneset text-fontLight">
           {formattedToday === formattedDate
             ? "TODAY"
             : formattedDate.toUpperCase()}
@@ -112,7 +112,7 @@ export default function MatchUp({
             h2h ? "w-1/5" : "w-2/5"
           } justify-center items-center gap-2`}
         >
-          <div className="border-b w-full flex justify-center items-center cursor-default">
+          <div className="border-b w-full flex justify-center font-oneset text-fontLight items-center cursor-default">
             SPREAD
           </div>
           {awaySpreadOdds && awaySpread && (
@@ -129,7 +129,7 @@ export default function MatchUp({
             spreads ? "w-1/5" : "w-2/5"
           } justify-center items-center gap-2`}
         >
-          <div className="border-b w-full flex justify-center items-center cursor-default">
+          <div className="border-b w-full font-oneset text-fontLight flex justify-center items-center cursor-default">
             MONEYLINE
           </div>
           {awayMoneyline && <Moneyline price={awayMoneyline} team={awayTeam} />}

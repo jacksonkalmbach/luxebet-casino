@@ -16,7 +16,7 @@ export default function UserHand() {
     <>
       {userHand.length > 0 && (
         <div>
-          <div className="mr-10">
+          <div className="mr-20">
             <Card
               tilt="left"
               isFaceUp
@@ -26,7 +26,7 @@ export default function UserHand() {
               isFolded={isFolded}
             />
           </div>
-          <div className="ml-10">
+          <div className="ml-20">
             <Card
               tilt="right"
               isFaceUp

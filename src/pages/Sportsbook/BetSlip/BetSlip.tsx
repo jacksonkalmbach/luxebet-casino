@@ -41,16 +41,21 @@ export default function BetSlip() {
   };
 
   return (
-    <div className="p-6 rounded-lg w-[30%] flex flex-col bg-[#f1f1f1] shadow-xl overflow-auto">
+    <div className="p-6 rounded-xl w-full h-full flex flex-col bg-secondaryBg shadow-xl overflow-auto">
       <div className="flex w-full justify-between items-center border-b">
         <div className="flex gap-1 items-center">
-          <div className="text-[#0a1f3b] text-2xl p-2 font-bold">
+          <div className="text-fontLight font-oneset text-2xl p-2 font-bold">
             {picksArray.length}
           </div>
-          <p className="text-[#0a1f3b] text-2xl font-bold">BET SLIP</p>
+          <p className="text-fontLight font-oneset text-2xl font-bold">
+            BET SLIP
+          </p>
         </div>
         {picksArray.length > 0 && (
-          <button onClick={clearAllBets} className="text-sm active:scale-95">
+          <button
+            onClick={clearAllBets}
+            className="text-sm text-fontLight font-oneset active:scale-95"
+          >
             Clear Bets
           </button>
         )}
@@ -61,7 +66,7 @@ export default function BetSlip() {
           className="sticky flex justify-center items-center h-full w-full"
           style={{ top: "0px" }}
         >
-          <p className="text-[#0a1f3b] font-bold text-sm">
+          <p className="text-fontLight font-oneset font-bold text-sm">
             YOUR PICKS WILL SHOW UP HERE.
           </p>
         </div>
@@ -84,7 +89,7 @@ export default function BetSlip() {
             })}
           </div>
           <button
-            className={`bg-primaryAccent w-full p-2 rounded-lg font-bold text-black justify-self-end  ${
+            className={`bg-primaryAccent w-full p-2 rounded-lg font-bold font-oneset text-black justify-self-end  ${
               betSlipSum === 0
                 ? "cursor-not-allowed opacity-50 disabled"
                 : "cursor-pointer active:scale-95 opacity-100"

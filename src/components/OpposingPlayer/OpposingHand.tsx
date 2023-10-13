@@ -21,8 +21,8 @@ export default function OpposingHand({
   if (cards.length === 0) return null;
 
   const cardPositions = {
-    left: ["-left-20", "-left-14"],
-    right: ["-right-14", "-right-20"],
+    left: ["-left-20", "-left-12"],
+    right: ["-right-12", "-right-20"],
   };
 
   return (

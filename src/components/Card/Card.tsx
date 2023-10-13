@@ -39,9 +39,9 @@ export default function Card({
         absolute ? "absolute" : ""
       } w-full h-full  border border-gray-200 rounded shadow-xl ${
         tilt === "right"
-          ? "rotate-[10deg]"
+          ? "rotate-[8deg]"
           : tilt === "left"
-          ? "-rotate-[10deg]"
+          ? "-rotate-[8deg]"
           : ""
       } transition-all transform-origin duration-200 ${
         isFolded ? "scale-90 bg-gray-200 opacity-80" : "bg-white"

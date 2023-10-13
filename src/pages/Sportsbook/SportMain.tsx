@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import BetSlip from "./BetSlip/BetSlip";
 import MatchUp from "./MatchUp/MatchUp";
 import MatchUpSkeleton from "./MatchUp/MatchUpSkeleton";
-import BetNavigation from "./Navigation/BetNavigation";
+// import BetNavigation from "./Navigation/BetNavigation";
 
 const SPORTS_API_KEY = process.env.REACT_APP_SPORTS_API_KEY;
 
@@ -46,16 +46,16 @@ export default function SportMain() {
 
   return (
     <div
-      className="flex w-full h-full p-8 bg-transparent"
-      style={{ height: "calc(100% - 48px)" }}
+      className="flex w-full h-full p-4 bg-transparent gap-4"
+      style={{ height: "calc(100% - 80px)" }}
     >
-      <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-start items-start p-10 border border-bgBorder gap-10">
-        <p className="text-white text-2xl w-full font-bold">
+      <div className="relative flex flex-col w-3/5 h-full bg-secondaryBg rounded-2xl justify-start items-start p-10 gap-10">
+        <p className="text-fontLight text-2xl w-full font-oneset font-bold">
           {sport?.toUpperCase()} Betting Odds
         </p>
-        <BetNavigation sport={sport} />
+        {/* <BetNavigation sport={sport} /> */}
         <div className="flex w-full h-full justify-around overflow-auto">
-          <div className="flex flex-col gap-4 justify-start w-2/3 h-full overflow-auto">
+          <div className="flex flex-col gap-4 justify-start w-full h-full overflow-auto">
             {errorMessage ? (
               <div className="text-center text-red-600">{errorMessage}</div>
             ) : apiData.length === 0 ? (
@@ -105,8 +105,10 @@ export default function SportMain() {
               </>
             )}
           </div>
-          <BetSlip />
         </div>
+      </div>
+      <div className="w-2/5">
+        <BetSlip />
       </div>
     </div>
   );
