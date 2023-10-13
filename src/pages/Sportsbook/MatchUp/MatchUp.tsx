@@ -98,7 +98,7 @@ export default function MatchUp({
   return (
     <div className="w-full flex text-white p-2 bg-primaryBg rounded-lg">
       <div className="flex flex-col w-3/5 gap-2">
-        <div className="border-b cursor-default font-oneset text-fontLight">
+        <div className="border-b cursor-default font-oneset text-fontLight text-xs md:text-base">
           {formattedToday === formattedDate
             ? "TODAY"
             : formattedDate.toUpperCase()}
@@ -110,10 +110,11 @@ export default function MatchUp({
         <div
           className={`flex flex-col ${
             h2h ? "w-1/5" : "w-2/5"
-          } justify-center items-center gap-2`}
+          } justify-start items-center gap-2`}
         >
-          <div className="border-b w-full flex justify-center font-oneset text-fontLight items-center cursor-default">
-            SPREAD
+          <div className="border-b w-full flex justify-center font-oneset text-fontLight items-center cursor-default md:pl-4 text-xs md:text-base">
+            <p className="block md:hidden">SPR.</p>
+            <p className="hidden md:block">SPREAD</p>
           </div>
           {awaySpreadOdds && awaySpread && (
             <Spread team={awayTeam} price={awaySpreadOdds} point={awaySpread} />
@@ -127,10 +128,11 @@ export default function MatchUp({
         <div
           className={`flex flex-col ${
             spreads ? "w-1/5" : "w-2/5"
-          } justify-center items-center gap-2`}
+          } justify-start items-center gap-2`}
         >
-          <div className="border-b w-full font-oneset text-fontLight flex justify-center items-center cursor-default">
-            MONEYLINE
+          <div className="border-b w-full font-oneset text-fontLight flex justify-center items-center cursor-default text-xs md:text-base">
+            <p className="block md:hidden">ML</p>
+            <p className="hidden md:block">MONEYLINE</p>
           </div>
           {awayMoneyline && <Moneyline price={awayMoneyline} team={awayTeam} />}
           {homeMoneyline && <Moneyline price={homeMoneyline} team={homeTeam} />}

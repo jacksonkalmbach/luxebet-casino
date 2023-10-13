@@ -42,7 +42,7 @@ export default function Spread({ team, price, point }: SpreadProps) {
 
   return (
     <div
-      className={`w-full flex gap-3 p-2 justify-center items-center cursor-pointer active:scale-95  ${
+      className={`w-full flex gap-3 p-2 justify-center items-center cursor-pointer active:scale-95 ${
         isSelected
           ? "bg-highlight text-primaryBg font-bold"
           : "hover:bg-highlight hover:bg-opacity-40"
@@ -50,14 +50,14 @@ export default function Spread({ team, price, point }: SpreadProps) {
       onClick={handleClick}
     >
       <div
-        className={`font-oneset ${
+        className={`font-oneset text-xs md:text-base ${
           isSelected ? "text-subduedText" : "text-primaryAccent"
         }`}
       >
         {point > 0 && "+"}
         {point}
       </div>
-      <div className="font-oneset text-fontLight">
+      <div className="font-oneset text-fontLight text-xs md:text-base">
         {price > 0 && "+"}
         {price}
       </div>

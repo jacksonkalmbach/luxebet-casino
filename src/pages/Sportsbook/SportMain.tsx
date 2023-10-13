@@ -46,11 +46,11 @@ export default function SportMain() {
 
   return (
     <div
-      className="flex w-full h-full p-4 bg-transparent gap-4"
+      className="flex w-full h-full p-4 bg-transparent md:gap-4"
       style={{ height: "calc(100% - 80px)" }}
     >
-      <div className="relative flex flex-col w-3/5 h-full bg-secondaryBg rounded-2xl justify-start items-start p-10 gap-10">
-        <p className="text-fontLight text-2xl w-full font-oneset font-bold">
+      <div className="relative flex flex-col w-full lg:w-3/5 h-full bg-secondaryBg rounded-2xl justify-start items-start p-4 lg:p-10 gap-5 md:gap-10">
+        <p className="text-fontLight text-xl md:text-2xl w-full font-oneset font-bold">
           {sport?.toUpperCase()} Betting Odds
         </p>
         {/* <BetNavigation sport={sport} /> */}
@@ -107,7 +107,7 @@ export default function SportMain() {
           </div>
         </div>
       </div>
-      <div className="w-2/5">
+      <div className="lg:w-2/5">
         <BetSlip />
       </div>
     </div>

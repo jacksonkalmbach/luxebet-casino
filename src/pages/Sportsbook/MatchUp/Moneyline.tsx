@@ -42,7 +42,7 @@ export default function Moneyline({ team, price }: MoneylineProps) {
         isSelected
           ? "bg-[#f1f1f1] text-black font-bold"
           : "hover:bg-gray-500/75 text-fontLight"
-      } font-oneset`}
+      } font-oneset text-xs md:text-base`}
       onClick={handleClick}
     >
       {price > 0 && "+"}

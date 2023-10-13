@@ -24,6 +24,12 @@ module.exports = {
         montserrat: ["'Montserrat", "sans-serif"],
         oneset: ["Oneset", "sans"],
       },
+      boxShadow: {
+        yellow:
+          "0 4px 6px -1px rgba(255, 215, 0, 0.1), 0 2px 4px -1px rgba(255, 215, 0, 0.06)",
+        "yellow-lg":
+          "0 10px 15px -3px rgba(255, 215, 0, 0.1), 0 4px 6px -2px rgba(255, 215, 0, 0.05)",
+      },
     },
   },
   plugins: [],

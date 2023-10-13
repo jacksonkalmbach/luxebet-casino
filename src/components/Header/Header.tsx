@@ -7,11 +7,10 @@ import ChevronDownIcon from "../../icons/ChevronDownIcon";
 
 import { selectUserBalance } from "../../store/features/user/userSlice";
 import { RootState } from "../../store/store";
+import HamburgerIcon from "../../icons/HamburgerIcon";
 
 export default function Header() {
   const navigate = useNavigate();
-  const pathname = window.location.pathname;
-  const segment = pathname.split("/")[1];
   const balance = useSelector((state: RootState) => selectUserBalance(state));
   const [isOpen, setIsOpen] = useState(false);
 
@@ -19,32 +18,47 @@ export default function Header() {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="w-full h-full flex bg-secondaryBg justify-end items-center py-3 px-6 gap-10 rounded-xl">
-      {segment === "sportsbook" && (
-        <>
-          <div
-            className="cursor-pointer font-oneset text-fontLight font-bold hover:text-[#eec23e] transition-all duration-200 ease-in-out"
-            onClick={() => navigate("/sportsbook/mybets")}
-          >
-            My Bets
-          </div>
-          <div className="w-[2px] h-5 bg-[#f1f1f1] opacity-50"></div>
-          <Balance balance={balance} />
+    <div className="relative w-full h-full flex bg-secondaryBg justify-between items-center py-3 px-6 gap-10 rounded-xl">
+      <div
+        className="hidden lg:flex cursor-pointer font-oneset text-fontLight font-bold hover:text-[#eec23e] transition-all duration-200 ease-in-out"
+        onClick={() => navigate("/sportsbook/mybets")}
+      >
+        My Bets
+      </div>
 
-          <div className="w-[2px] h-5 bg-[#f1f1f1] opacity-50"></div>
-        </>
-      )}
-      <div className="flex gap-3 justify-center items-center cursor-pointer">
-        <div className="text-fontLight font-oneset">jacksonkalmbach</div>
+      <div className="flex w-full justify-between lg:w-1/3 lg:justify-around">
+        <div className="flex w-1/3 pl-10">
+          <Balance balance={balance} />
+        </div>
+        <div className="block md:hidden">
+          <HamburgerIcon color="white" />
+        </div>
         <div
-          className={`${
-            !isOpen ? "" : "rotate-180"
-          } transition-all duration-200 ease-in-out`}
+          className="hidden md:flex gap-2 justify-center items-center cursor-pointer"
           onClick={handleClick}
         >
-          <ChevronDownIcon color="white" />
+          <div className="text-fontLight font-oneset text-sm md:text-base">
+            jacksonkalmbach
+          </div>
+          <div
+            className={`${
+              !isOpen ? "" : "rotate-180"
+            } transition-all duration-200 ease-in-out`}
+          >
+            <ChevronDownIcon color="#e0dfdf" />
+          </div>
         </div>
       </div>
+      {isOpen && (
+        <div className="hidden md:flex absolute w-56 text-white right-4 mt-2 top-full z-50 bg-tertiaryBg p-4 rounded-xl flex-col font-oneset gap-3">
+          <p className="hover:text-primaryAccent cursor-pointer">My Account</p>
+          <p className="hover:text-primaryAccent cursor-pointer">My Bets</p>
+          <p className="hover:text-primaryAccent cursor-pointer">Contact</p>
+          <p className="hover:text-primaryAccent mt-4 cursor-pointer">
+            Sign Out
+          </p>
+        </div>
+      )}
     </div>
   );
 }
