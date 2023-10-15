@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import Moneyline from "./Moneyline";
-import Spread from "./Spread";
-import TeamName from "./TeamName";
+import Moneyline from "../Moneyline/Moneyline";
+import Spread from "../Spread/Spread";
+import TeamName from "../TeamName/TeamName";
 
 interface MatchUpOddsProps {
   matchId: string;

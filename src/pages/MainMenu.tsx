@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CloseIcon from "../icons/CloseIcon";
-import { SPORTS } from "./Sportsbook/sports";
 
 import pokerImg from "../photos/poker-bg.webp";
 import rouletteImg from "../photos/roulette-wheel.jpg";

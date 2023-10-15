@@ -7,11 +7,10 @@ import StartPage from "./pages/StartPage";
 import SportWrapper from "./pages/Sportsbook/SportWrapper";
 import Blackjack from "./pages/Games/Blackjack";
 import Roulette from "./pages/Games/Roulette";
-import SportsBettingMain from "./pages/Sportsbook/SportsBettingMain";
-import SportMain from "./pages/Sportsbook/SportMain";
+import SportMain from "./pages/Sportsbook/SportOdds";
 
 import "./App.css";
-import MyBets from "./pages/Sportsbook/MyBets/MyBets";
+import MyBets from "./components/Sportsbook/MyBets/MyBets";
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
           <Route path="roulette" element={<Roulette />} />
         </Route>
         <Route path="sportsbook">
-          <Route index element={<SportsBettingMain />} />
           <Route path="mybets" element={<MyBets />} />
           <Route path=":sport" element={<SportWrapper />}>
             <Route index element={<SportMain />} />
