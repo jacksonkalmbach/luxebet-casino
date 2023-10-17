@@ -9,9 +9,10 @@ export default function TexasHoldEm() {
   const navigate = useNavigate();
   const [startGame, setStartGame] = useState<boolean>(false);
 
-  const handleStartNewGame = () => {
+  const handleStartNewGame = async () => {
+    console.log("start game");
     setStartGame(true);
-    fetch("http://localhost:5003/start-game", {
+    const res = await fetch("http://localhost:5003/start-game", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,14 +21,15 @@ export default function TexasHoldEm() {
         num_players: 5,
       }),
     });
+
+    const json = await res.json();
+    console.log(json);
   };
 
   return (
     <div className="flex w-full h-full p-4 bg-transparent">
       {startGame ? (
-        <div
-          className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center overflow-hidden"
-        >
+        <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center overflow-hidden">
           <div className="absolute top-5 left-10 cursor-pointer active:scale-95">
             <button
               className="flex gap-2 px-3 py-2 rounded hover:bg-primaryBg group"

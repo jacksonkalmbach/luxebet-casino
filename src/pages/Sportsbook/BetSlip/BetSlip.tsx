@@ -1,15 +1,23 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   selectFullBetSlip,
   clearBetSlip,
 } from "../../../store/features/sportsbook/betSlipSlice";
-import { decrementUserBalance } from "../../../store/features/user/userSlice";
+import {
+  decrementUserBalance,
+  selectUserLoginStatus,
+} from "../../../store/features/user/userSlice";
 import { RootState } from "../../../store/store";
 import Pick from "./Pick";
 
 export default function BetSlip() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector((state: RootState) =>
+    selectUserLoginStatus(state)
+  );
   const picksArray = useSelector((state: RootState) =>
     selectFullBetSlip(state)
   );
@@ -27,6 +35,10 @@ export default function BetSlip() {
     setPickAmounts((prev) => ({ ...prev, [team]: amount }));
   }, []);
 
+  const handleShowFullBetSlip = () => {
+    setShowFullBetSlip(!showFullBetSlip);
+  };
+
   useEffect(() => {
     const total = Object.values(pickAmounts).reduce(
       (sum, amount) => sum + amount,
@@ -36,14 +48,25 @@ export default function BetSlip() {
   }, [pickAmounts]);
 
   const handlePlaceBet = () => {
-    if (betSlipSum === 0) return;
-    dispatch(decrementUserBalance(betSlipSum));
-    dispatch(clearBetSlip());
+    if (isLoggedIn) {
+      if (betSlipSum === 0) return;
+      dispatch(decrementUserBalance(betSlipSum));
+      dispatch(clearBetSlip());
+    } else {
+      navigate("/auth");
+    }
   };
 
   return (
-    <div className="md:static md:left-auto md:bottom-auto md:bg-secondaryBg absolute left-0 bottom-0 bg-tertiaryBg h-fit lg:flex p-6 rounded-xl w-full lg:h-full flex-col bg-secondaryBg shadow-xl overflow-auto">
-      <div className="flex w-full justify-between items-center border-b">
+    <div
+      className={`md:static md:left-auto md:bottom-auto md:bg-secondaryBg ${
+        picksArray.length === 0 ? "hidden" : ""
+      } absolute left-0 bottom-0 bg-tertiaryBg h-fit lg:flex p-6 rounded-xl w-full lg:h-full flex-col bg-secondaryBg shadow-xl overflow-auto`}
+    >
+      <div
+        className="flex w-full justify-between items-center border-b"
+        onClick={handleShowFullBetSlip}
+      >
         <div className="flex gap-1 items-center">
           <div className="text-fontLight font-oneset text-2xl p-2 font-bold">
             {picksArray.length}
@@ -94,7 +117,7 @@ export default function BetSlip() {
             })}
           </div>
           <button
-            className={`bg-primaryAccent w-full p-2 rounded-lg font-bold font-oneset text-black justify-self-end  ${
+            className={`bg-primaryAccent mt-3 w-full p-2 rounded-lg font-bold font-oneset text-black justify-self-end  ${
               betSlipSum === 0
                 ? "cursor-not-allowed opacity-50 disabled"
                 : "cursor-pointer active:scale-95 opacity-100"
@@ -103,7 +126,9 @@ export default function BetSlip() {
           >
             {betSlipSum === 0
               ? "Enter Wager Amount"
-              : `Place Bet $${betSlipSum.toFixed(2)}`}
+              : isLoggedIn
+              ? `Place Bet $${betSlipSum.toFixed(2)}`
+              : "Sign In to Place Wager"}
           </button>
         </div>
       )}

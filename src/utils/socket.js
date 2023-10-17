@@ -5,7 +5,15 @@ const socket = io.connect(ENDPOINT);
 
 // Log successful connection
 socket.on("connect", () => {
-  console.log("Connected to server!");
+  console.log("Connected to Server!");
+});
+
+socket.on("blind_positions", () => {
+  console.log("BLIND");
+});
+
+socket.on("test", () => {
+  console.log("test");
 });
 
 // Log any connection errors

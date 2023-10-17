@@ -8,6 +8,7 @@ import SportWrapper from "./pages/Sportsbook/SportWrapper";
 import Blackjack from "./pages/Games/Blackjack";
 import Roulette from "./pages/Games/Roulette";
 import SportMain from "./pages/Sportsbook/SportOdds";
+import AuthMain from "./pages/Auth/AuthMain";
 
 import "./App.css";
 import MyBets from "./components/Sportsbook/MyBets/MyBets";
@@ -17,6 +18,7 @@ function App() {
     <Routes>
       <Route path="/" element={<MainPage />}>
         <Route index element={<StartPage />} />
+        <Route path="auth" element={<AuthMain />} />
         <Route path="games">
           <Route path="texas hold'em" element={<TexasHoldEm />} />
           <Route path="blackjack" element={<Blackjack />} />

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import AuthMain from "./Auth/AuthMain";
 import MainMenu from "./MainMenu";
@@ -15,22 +16,23 @@ import { guestUsernames } from "../utils/guest/guestUsernames";
 
 export default function StartPage() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoggedIn = useSelector((state: RootState) =>
     selectUserLoginStatus(state)
   );
 
-  const handleGuestLogin = () => {
-    dispatch(setUserLogIn(true));
-    dispatch(
-      setUserName(
-        guestUsernames[Math.floor(Math.random() * guestUsernames.length)]
-      )
-    );
-  };
+  useEffect(() => {
+    // Check isLoggedIn and navigate to '/auth' if false
+    if (!isLoggedIn) {
+      navigate("/auth");
+    }
+  }, [isLoggedIn, navigate]);
+
+  
 
   return (
-    <div className="w-full h-full flex p-8 bg-transparent">
-      {isLoggedIn ? <MainMenu /> : <AuthMain onGuestLogIn={handleGuestLogin} />}
+    <div className="w-full h-full flex p-8 bg-transparent overflow-hidden">
+      {isLoggedIn && <MainMenu />}
     </div>
   );
 }

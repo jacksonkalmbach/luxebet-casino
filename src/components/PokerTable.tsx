@@ -15,7 +15,7 @@ import feltImg from "../photos/felt.jpg";
 import { RootState } from "../store/store";
 
 const initialSeats = {
-  0: {
+  1: {
     className: "absolute -top-10 -left-14",
     side: "right",
     playerName: "Seb",
@@ -26,7 +26,7 @@ const initialSeats = {
     isLittleBlind: false,
     isOccupied: true,
   },
-  1: {
+  2: {
     className: "absolute -top-10 -right-14",
     side: "left",
     playerName: "Jackson",
@@ -37,7 +37,7 @@ const initialSeats = {
     isLittleBlind: true,
     isOccupied: true,
   },
-  2: {
+  3: {
     className: "absolute top-[35%] -right-[25%]",
     side: "left",
     playerName: "Chris",
@@ -48,7 +48,7 @@ const initialSeats = {
     isLittleBlind: false,
     isOccupied: true,
   },
-  3: {
+  4: {
     className: "absolute -bottom-10 -right-10",
     side: "left",
     playerName: "Parker",
@@ -59,10 +59,10 @@ const initialSeats = {
     isLittleBlind: false,
     isOccupied: true,
   },
-  4: {
+  5: {
     className: "absolute top-[35%] -left-[25%]",
     side: "right",
-    playerName: "",
+    playerName: "Tom",
     image: "https://robohash.org/4",
     cards: [],
     isTurn: false,
@@ -78,6 +78,7 @@ export default function PokerTable() {
 
   useEffect(() => {
     socket.on("blind_positions", (data: any) => {
+      console.log("BLIND POSITIONS RECEIVED");
       setSeatsState((prevState: any) => {
         let updatedSeats = { ...prevState };
         Object.keys(prevState).forEach((key) => {
@@ -102,11 +103,11 @@ export default function PokerTable() {
       console.log("PLACE A BET");
     });
 
-    return () => {
-      socket.off("blind_positions");
-      socket.off("player_cards");
-      socket.off("place_bet");
-    };
+    // return () => {
+    //   socket.off("blind_positions");
+    //   socket.off("player_cards");
+    //   socket.off("place_bet");
+    // };
   }, []);
 
   return (

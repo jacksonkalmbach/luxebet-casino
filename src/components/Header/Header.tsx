@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import Balance from "../Balance/Balance";
@@ -18,8 +18,10 @@ import HamburgerIcon from "../../icons/HamburgerIcon";
 import { guestUsernames } from "../../utils/guest/guestUsernames";
 
 export default function Header() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const isLoggedIn = useSelector((state: RootState) =>
     selectUserLoginStatus(state)
   );
@@ -92,9 +94,26 @@ export default function Header() {
             </div>
           )}
         </div>
+      ) : location.pathname === "/auth" ? (
+        <div className="flex flex-col w-full justify-start items-center md:hidden">
+          <div
+            className="flex gap-2 cursor-pointer"
+            onClick={() => navigate("/")}
+          >
+            <p className="text-primaryAccent font-bold font-lobster text-5xl">
+              LuxeBet
+            </p>
+          </div>
+          <p className="text-fontLight font-bold text-base font-oneset font-light">
+            CASINO
+          </p>
+        </div>
       ) : (
         <div className="relative w-full h-full flex bg-secondaryBg justify-end items-center py-3 px-6 gap-10 rounded-xl">
-          <button className="bg-primaryAccent font-oneset p-2 rounded-xl active:scale-95">
+          <button
+            className="bg-primaryAccent font-oneset p-2 rounded-xl active:scale-95"
+            onClick={() => navigate("/auth")}
+          >
             Sign In
           </button>
         </div>

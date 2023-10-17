@@ -64,12 +64,12 @@ export default function MainMenu() {
   };
 
   return (
-    <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-start items-center p-10 gap-10">
+    <div className="relative flex flex-col w-full bg-secondaryBg rounded-2xl justify-start items-center p-10 gap-10">
       <div className="w-full flex flex-col h-44 gap-3">
-        <h1 className="text-white text-3xl font-bold">Games</h1>
-        <div className="flex gap-4 h-full w-full">
+        <h1 className="text-white text-xl md:text-3xl font-bold">Games</h1>
+        <div className="flex flex-col gap-4 h-full w-full">
           <div
-            className="w-[300px] flex justify-center items-center rounded-lg cursor-pointer active:scale-95 transition-all duration-200"
+            className="w-full md:w-[300px] flex justify-center items-center rounded-lg cursor-pointer active:scale-95 transition-all duration-200"
             style={{
               backgroundImage: `url(${pokerImg})`,
               backgroundSize: "cover",
@@ -83,7 +83,7 @@ export default function MainMenu() {
             </p>
           </div>
           <div
-            className="w-[300px] bg-[#CCCCCC] flex justify-center items-center rounded-lg cursor-pointer active:scale-95 transition-all duration-200"
+            className="w-full md:w-[300px] bg-[#CCCCCC] flex justify-center items-center rounded-lg cursor-pointer active:scale-95 transition-all duration-200"
             style={{
               backgroundImage: `url(${blackjackImg})`,
               backgroundSize: "cover",
@@ -97,7 +97,7 @@ export default function MainMenu() {
             </p>
           </div>
           <div
-            className="w-[300px] bg-[#CCCCCC] flex justify-center items-center rounded-lg cursor-pointer active:scale-95 transition-all duration-200"
+            className="w-full md:w-[300px] bg-[#CCCCCC] flex justify-center items-center rounded-lg cursor-pointer active:scale-95 transition-all duration-200"
             style={{
               backgroundImage: `url(${rouletteImg})`,
               backgroundSize: "cover",
@@ -112,8 +112,10 @@ export default function MainMenu() {
           </div>
         </div>
       </div>
-      <div className="w-full flex flex-col h-full">
-        <h1 className="text-white text-3xl font-bold mb-3">Sportsbook</h1>
+      <div className="w-full flex flex-col h-full overflow-hidden">
+        <h1 className="text-white text-xl md:text-3xl font-bold mb-3">
+          Sportsbook
+        </h1>
         <div className="flex flex-wrap gap-4 w-full overflow-auto">
           {selectedSport !== "" && (
             <div
@@ -121,7 +123,7 @@ export default function MainMenu() {
               onClick={() => setSelectedSport("")}
             >
               <div className="w-fit h-fit py-3 px-6 gap-2 bg-fontLight font-oneset text-primaryBg flex justify-start items-center rounded-lg cursor-pointer active:scale-95 hover:bg-fontLight hover:text-primaryBg transition-all duration-200">
-                <p className="text-base w-fit">{selectedSport}</p>
+                <p className="text-sm md:text-base w-fit">{selectedSport}</p>
                 <CloseIcon color="black" />{" "}
               </div>
               <div className="flex flex-col min-h-5 max-h-52 flex-wrap bg-tertiaryBg font-oneset text-fontLight gap-3 rounded-xl p-4 overflow-auto mt-4">
@@ -129,7 +131,7 @@ export default function MainMenu() {
                   subCategories[selectedSport].map((sub) => (
                     <p
                       key={sub.key}
-                      className="text-base w-fit hover:underline cursor-pointer"
+                      className="text-sm md:text-base w-fit hover:underline cursor-pointer"
                       onClick={() =>
                         handleNavigate("sportsbook", selectedSport, sub.key)
                       }
@@ -144,11 +146,11 @@ export default function MainMenu() {
             <div
               className={`${
                 selectedSport === sport ? "hidden" : "flex flex-col"
-              } `}
+              }`}
               onClick={() => setSelectedSport(sport)}
             >
               <div className="w-fit h-fit py-3 px-6 bg-tertiaryBg font-oneset text-fontLight flex justify-start items-center rounded-lg cursor-pointer active:scale-95 hover:bg-fontLight hover:text-primaryBg transition-all duration-200">
-                <p className="text-base w-fit">{sport}</p>
+                <p className="text-sm md:text-base w-fit">{sport}</p>
               </div>
             </div>
           ))}
