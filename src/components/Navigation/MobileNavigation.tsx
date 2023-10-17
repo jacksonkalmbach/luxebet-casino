@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setShowMobileNav } from "../../store/features/general/navigationSlice";
-import { setUserLogIn } from "../../store/features/user/userSlice";
+import {
+  selectUserLoginStatus,
+  setUserLogIn,
+} from "../../store/features/user/userSlice";
+import { RootState } from "../../store/store";
 import Category from "../SideMenu/Category/Category";
 
 const SPORTS_API_KEY = process.env.REACT_APP_SPORTS_API_KEY;
@@ -41,6 +45,9 @@ export default function MobileNavigation({
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const isLoggedIn = useSelector((state: RootState) =>
+    selectUserLoginStatus(state)
+  );
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showSubCategories, setShowSubCategories] = useState<boolean>(false);
   const [sports, setSports] = useState<string[]>([]);
@@ -107,6 +114,7 @@ export default function MobileNavigation({
       </div>
       <div className={`${isOpen ? "flex flex-col gap-3" : "hidden"}`}>
         <p className="font-oneset font-bold text-primaryBg">DEPOSIT</p>
+
         <p
           className="font-oneset font-bold text-primaryBg"
           onClick={() => {

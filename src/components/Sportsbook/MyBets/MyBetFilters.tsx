@@ -1,59 +1,25 @@
 import React, { useState } from "react";
 
+const filters = ["ALL", "OPEN", "SETTLED", "WON", "LOST"];
+
 export default function MyBetFilters() {
-  const [filter, setFilter] = useState<string>("ALL");
+  const [selectedFilter, setSelectedFilter] = useState<string>("ALL");
   return (
-    <div className="w-1/5 mr-4 flex flex-col gap-3">
-      <p
-        className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
-          filter === "ALL"
-            ? "bg-primaryBg font-bold text-white"
-            : "text-subduedText"
-        }`}
-        onClick={() => setFilter("ALL")}
-      >
-        ALL
-      </p>
-      <p
-        className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
-          filter === "OPEN"
-            ? "bg-primaryBg font-bold text-white"
-            : "text-subduedText"
-        }`}
-        onClick={() => setFilter("OPEN")}
-      >
-        OPEN
-      </p>
-      <p
-        className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
-          filter === "SETTLED"
-            ? "bg-primaryBg font-bold text-white"
-            : "text-subduedText"
-        }`}
-        onClick={() => setFilter("SETTLED")}
-      >
-        SETTLED
-      </p>
-      <p
-        className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
-          filter === "WON"
-            ? "bg-primaryBg font-bold text-white"
-            : "text-subduedText"
-        }`}
-        onClick={() => setFilter("WON")}
-      >
-        WON
-      </p>
-      <p
-        className={`font-oneset  w-full px-3 py-2 rounded-xl cursor-pointer ${
-          filter === "LOST"
-            ? "bg-primaryBg font-bold text-white"
-            : "text-subduedText"
-        }`}
-        onClick={() => setFilter("LOST")}
-      >
-        LOST
-      </p>
+    <div className="w-full mb-4 mr-4 flex gap-1 md:gap-3 md:w-1/5 md:flex-col overflow-auto">
+      {filters.map((filter: string) => {
+        return (
+          <p
+            className={`font-oneset text-xs w-fit px-2 md:px-3 py-2 rounded-xl cursor-pointer ${
+              selectedFilter === filter
+                ? "bg-primaryBg font-bold text-white"
+                : "text-subduedText"
+            } md:text-base md:w-full`}
+            onClick={() => setSelectedFilter(filter)}
+          >
+            {filter}
+          </p>
+        );
+      })}
     </div>
   );
 }
