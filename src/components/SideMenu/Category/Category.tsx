@@ -8,6 +8,7 @@ interface CategoryProps {
   subCategories?:
     | { [key: string]: { key: string; title: string }[] }
     | undefined;
+  color?: string;
 }
 
 export default function Category({
@@ -15,11 +16,16 @@ export default function Category({
   links,
   category,
   subCategories,
+  color,
 }: CategoryProps) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex w-full justify-start">
-        <p className="font-bold cursor-default font-oneset text-fontLight">
+        <p
+          className={`font-bold cursor-default font-oneset ${
+            color ? color : "text-fontLight"
+          }`}
+        >
           {title}
         </p>
       </div>
@@ -30,6 +36,7 @@ export default function Category({
             category={category}
             title={link}
             subCategories={subCategories?.[link]}
+            color={color}
           />
         ))}
       </div>

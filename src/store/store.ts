@@ -6,6 +6,7 @@ import cardsReducer from "./features/game/cardsSlice";
 import userGameReducer from "./features/game/userGameSlice";
 import betSlipReducer from "./features/sportsbook/betSlipSlice";
 import userReducer from "./features/user/userSlice";
+import navReducer from "./features/general/navigationSlice";
 
 const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ const store = configureStore({
     cards: cardsReducer,
     userGame: userGameReducer,
     betSlip: betSlipReducer,
+    navigation: navReducer,
   },
 });
 

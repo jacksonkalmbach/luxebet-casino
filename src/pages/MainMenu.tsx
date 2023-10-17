@@ -65,9 +65,9 @@ export default function MainMenu() {
 
   return (
     <div className="relative flex flex-col w-full bg-secondaryBg rounded-2xl justify-start items-center p-10 gap-10">
-      <div className="w-full flex flex-col h-44 gap-3">
+      <div className="w-full flex flex-col  h-44 gap-3">
         <h1 className="text-white text-xl md:text-3xl font-bold">Games</h1>
-        <div className="flex flex-col gap-4 h-full w-full">
+        <div className="flex flex-col md:flex-row gap-4 h-full w-full">
           <div
             className="w-full md:w-[300px] flex justify-center items-center rounded-lg cursor-pointer active:scale-95 transition-all duration-200"
             style={{

@@ -12,16 +12,25 @@ import {
   selectUsername,
 } from "../../store/features/user/userSlice";
 
+import {
+  selectShowMobileNav,
+  setShowMobileNav,
+} from "../../store/features/general/navigationSlice";
+
 import { RootState } from "../../store/store";
 import HamburgerIcon from "../../icons/HamburgerIcon";
 
 import { guestUsernames } from "../../utils/guest/guestUsernames";
+import MobileNavigation from "../Navigation/MobileNavigation";
 
 export default function Header() {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const showMobileNav = useSelector(
+    (state: RootState) => state.navigation.showMobileNav
+  );
   const isLoggedIn = useSelector((state: RootState) =>
     selectUserLoginStatus(state)
   );
@@ -33,8 +42,20 @@ export default function Header() {
     setIsOpen(!isOpen);
   };
 
+  const handleShowMobileNav = (path?: string) => {
+    if (path) {
+      navigate(path);
+    }
+    setShowMobileNav(!showMobileNav);
+  };
+
   return (
     <>
+      {showMobileNav && (
+        <div className="absolute z-50 bg-black bg-opacity-40 bottom-0 right-0 w-screen h-screen flex justify-end">
+          <MobileNavigation handleShowMobileNav={handleShowMobileNav} />
+        </div>
+      )}
       {isLoggedIn ? (
         <div className="relative w-full h-full flex bg-secondaryBg justify-between items-center py-3 px-6 gap-10 rounded-xl">
           <div
@@ -47,7 +68,10 @@ export default function Header() {
             <div className="flex w-1/3 pl-10">
               <Balance balance={balance} />
             </div>
-            <div className="block md:hidden">
+            <div
+              className="block md:hidden"
+              onClick={() => dispatch(setShowMobileNav(true))}
+            >
               <HamburgerIcon color="white" />
             </div>
             <div
