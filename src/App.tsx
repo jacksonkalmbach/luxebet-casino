@@ -12,10 +12,12 @@ import AuthMain from "./pages/Auth/AuthMain";
 
 import "./App.css";
 import MyBets from "./components/Sportsbook/MyBets/MyBets";
+import Deposit from "./pages/Deposit/Deposit";
 
 function App() {
   return (
     <Routes>
+      <Route path="/deposit" element={<Deposit />} />
       <Route path="/" element={<MainPage />}>
         <Route index element={<StartPage />} />
         <Route path="auth" element={<AuthMain />} />

@@ -20,7 +20,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className="flex flex-col md:bg-secondaryBg w-full h-full md:h-2/3 md:w-1/2 rounded-lg p-8 justify-center items-center gap-4 font-oneset">
+    <div className="flex flex-col md:bg-secondaryBg w-full h-full md:h-2/3 md:w-1/2 rounded-lg p-8 justify-start items-center gap-4 font-oneset md:justify-center">
       <h1 className="text-fontLight text-2xl font-bold">Sign In</h1>
       <form className="flex flex-col gap-2 w-full md:w-4/5 items-center">
         <input className="w-full h-10 rounded-lg p-2" placeholder="Username" />

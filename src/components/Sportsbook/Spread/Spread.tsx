@@ -51,13 +51,17 @@ export default function Spread({ team, price, point }: SpreadProps) {
     >
       <div
         className={`font-oneset text-xs md:text-base ${
-          isSelected ? "text-subduedText" : "text-primaryAccent"
+          isSelected ? "text-primaryBg" : "text-primaryAccent"
         }`}
       >
         {point > 0 && "+"}
         {point}
       </div>
-      <div className="font-oneset text-fontLight text-xs md:text-base">
+      <div
+        className={`font-oneset text-xs md:text-base ${
+          isSelected ? "text-primaryBg" : "text-fontLight"
+        }`}
+      >
         {price > 0 && "+"}
         {price}
       </div>

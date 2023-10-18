@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import WalletIcon from "../../icons/WalletIcon";
 
 interface BalanceProps {
@@ -6,6 +8,7 @@ interface BalanceProps {
 }
 
 export default function Balance({ balance }: BalanceProps) {
+  const navigate = useNavigate();
   const [makeDeposit, setMakeDeposit] = useState<boolean>(false);
 
   const handleClick = () => {
@@ -38,7 +41,7 @@ export default function Balance({ balance }: BalanceProps) {
             ? "opacity-0 w-0"
             : "opacity-100 pl-8 pr-3 cursor-pointer active:scale-95 hover:bg-fontLight"
         }`}
-        onClick={() => console.log("make deposit")}
+        onClick={() => navigate("/deposit")}
       >
         Deposit
       </span>

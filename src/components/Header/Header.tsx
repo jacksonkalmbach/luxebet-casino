@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
+import Logo from "../Logo/Logo";
 import Balance from "../Balance/Balance";
 import ChevronDownIcon from "../../icons/ChevronDownIcon";
 
@@ -22,6 +23,7 @@ import HamburgerIcon from "../../icons/HamburgerIcon";
 
 import { guestUsernames } from "../../utils/guest/guestUsernames";
 import MobileNavigation from "../Navigation/MobileNavigation";
+import Dropdown from "../Dropdown/Dropdown";
 
 export default function Header() {
   const location = useLocation();
@@ -90,47 +92,11 @@ export default function Header() {
               </div>
             </div>
           </div>
-          {isOpen && (
-            <div className="hidden md:flex absolute w-56 text-white right-4 mt-2 top-full z-50 bg-tertiaryBg p-4 rounded-xl flex-col font-oneset gap-3">
-              <p className="hover:text-primaryAccent cursor-pointer">
-                My Account
-              </p>
-              <p
-                className="hover:text-primaryAccent cursor-pointer"
-                onClick={() => {
-                  setIsOpen(false);
-                  navigate("/sportsbook/mybets");
-                }}
-              >
-                My Bets
-              </p>
-              <p className="hover:text-primaryAccent cursor-pointer">Contact</p>
-              <p
-                className="hover:text-primaryAccent mt-4 cursor-pointer"
-                onClick={() => {
-                  dispatch(setUserLogIn(false));
-                  setIsOpen(false);
-                  navigate("/");
-                }}
-              >
-                Sign Out
-              </p>
-            </div>
-          )}
+          {isOpen && <Dropdown isOpen={isOpen} setIsOpen={setIsOpen} />}
         </div>
       ) : location.pathname === "/auth" ? (
-        <div className="flex flex-col w-full justify-start items-center md:hidden">
-          <div
-            className="flex gap-2 cursor-pointer"
-            onClick={() => navigate("/")}
-          >
-            <p className="text-primaryAccent font-bold font-lobster text-5xl">
-              LuxeBet
-            </p>
-          </div>
-          <p className="text-fontLight font-bold text-base font-oneset font-light">
-            CASINO
-          </p>
+        <div className="md:hidden">
+          <Logo variant="primary" />
         </div>
       ) : (
         <div className="relative w-full h-full flex bg-secondaryBg justify-end items-center py-3 px-6 gap-10 rounded-xl">

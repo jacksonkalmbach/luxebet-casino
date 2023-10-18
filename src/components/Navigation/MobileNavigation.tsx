@@ -7,6 +7,7 @@ import {
   setUserLogIn,
 } from "../../store/features/user/userSlice";
 import { RootState } from "../../store/store";
+import Logo from "../Logo/Logo";
 import Category from "../SideMenu/Category/Category";
 
 const SPORTS_API_KEY = process.env.REACT_APP_SPORTS_API_KEY;
@@ -97,23 +98,15 @@ export default function MobileNavigation({
       } h-full transition-all duration-200 overflow-auto`}
     >
       <div className="flex flex-col w-full justify-start items-center mb-5 md:hidden">
-        <div
-          className="flex gap-2 cursor-pointer"
-          onClick={() => {
-            navigate("/");
-            dispatch(setShowMobileNav(false));
-          }}
-        >
-          <p className="text-primaryBg font-bold font-lobster text-3xl">
-            LuxeBet
-          </p>
-        </div>
-        <p className="text-primaryBg font-bold text-sm font-oneset font-light">
-          CASINO
-        </p>
+        <Logo variant="secondary" />
       </div>
       <div className={`${isOpen ? "flex flex-col gap-3" : "hidden"}`}>
-        <p className="font-oneset font-bold text-primaryBg">DEPOSIT</p>
+        <p
+          className="font-oneset font-bold text-primaryBg"
+          onClick={() => navigate("/deposit")}
+        >
+          DEPOSIT
+        </p>
 
         <p
           className="font-oneset font-bold text-primaryBg"
