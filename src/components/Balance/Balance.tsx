@@ -1,15 +1,16 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import WalletIcon from "../../icons/WalletIcon";
 
-interface BalanceProps {
-  balance: number;
-}
+import { selectUserBalance } from "../../store/features/game/userGameSlice";
+import { RootState } from "../../store/store";
 
-export default function Balance({ balance }: BalanceProps) {
+export default function Balance() {
   const navigate = useNavigate();
   const [makeDeposit, setMakeDeposit] = useState<boolean>(false);
+  const balance = useSelector((state: RootState) => selectUserBalance(state));
 
   const handleClick = () => {
     if (makeDeposit) {

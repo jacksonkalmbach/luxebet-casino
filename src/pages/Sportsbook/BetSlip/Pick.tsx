@@ -27,7 +27,9 @@ export default function Pick({
   const [payout, setPayout] = useState(0);
 
   const handleRemovePick = () => {
-    dispatch(removePick({ team, price, point, betType }));
+    dispatch(
+      removePick({ team: team, price: price, point: point, betType: betType })
+    );
   };
 
   useEffect(() => {
@@ -50,7 +52,10 @@ export default function Pick({
               {team}
             </p>
           </div>
-          <p className="text-xs text-fontLight font-oneset">{price > 0 && "+"}{price}</p>
+          <p className="text-xs text-fontLight font-oneset">
+            {price > 0 && "+"}
+            {price}
+          </p>
         </div>
         <p className="text-xs text-fontLight font-oneset">
           {betType} {point ? (point > 0 ? `+${point}` : point) : ""}

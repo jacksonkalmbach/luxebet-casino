@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addPick,
   removePick,
-  selectFullBetSlip,
+  selectBetSlipObject,
 } from "../../../store/features/sportsbook/betSlipSlice";
 import { RootState } from "../../../store/store";
 
@@ -15,16 +15,19 @@ interface MoneylineProps {
 
 export default function Moneyline({ team, price }: MoneylineProps) {
   const dispatch = useDispatch();
-  const picksArray = useSelector((state: RootState) =>
-    selectFullBetSlip(state)
+  const picksObject = useSelector((state: RootState) =>
+    selectBetSlipObject(state)
   );
   const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
-    if (picksArray.length === 0) {
+    const key = `${team}-${"Moneyline"}-${price}`;
+    if (picksObject[key]) {
+      setIsSelected(true);
+    } else {
       setIsSelected(false);
     }
-  }, [picksArray]);
+  }, [team, price, picksObject]);
 
   const handleClick = () => {
     if (isSelected) {

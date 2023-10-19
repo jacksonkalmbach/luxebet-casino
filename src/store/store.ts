@@ -1,4 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { enableMapSet } from "immer";
 
 import potReducer from "./features/game/potSlice";
 import pokerReduer from "./features/game/pokerSlice";
@@ -7,6 +8,8 @@ import userGameReducer from "./features/game/userGameSlice";
 import betSlipReducer from "./features/sportsbook/betSlipSlice";
 import userReducer from "./features/user/userSlice";
 import navReducer from "./features/general/navigationSlice";
+
+enableMapSet();
 
 const store = configureStore({
   reducer: {

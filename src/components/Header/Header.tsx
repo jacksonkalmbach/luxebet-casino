@@ -37,7 +37,6 @@ export default function Header() {
     selectUserLoginStatus(state)
   );
   const username = useSelector((state: RootState) => selectUsername(state));
-  const balance = useSelector((state: RootState) => selectUserBalance(state));
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = () => {
@@ -54,8 +53,8 @@ export default function Header() {
   return (
     <>
       {showMobileNav && (
-        <div className="absolute z-50 bg-black bg-opacity-40 bottom-0 right-0 w-screen h-screen flex justify-end">
-          <MobileNavigation handleShowMobileNav={handleShowMobileNav} />
+        <div className="absolute z-30 bg-black bg-opacity-40 bottom-0 right-0 w-screen h-screen flex justify-end">
+          <MobileNavigation />
         </div>
       )}
       {isLoggedIn ? (
@@ -66,9 +65,14 @@ export default function Header() {
           >
             My Bets
           </div>
-          <div className="flex w-full justify-between lg:w-1/3 lg:justify-around">
-            <div className="flex w-1/3 pl-10">
-              <Balance balance={balance} />
+          <div className="flex w-full justify-between lg:w-1/3 lg:justify-around items-center">
+            <div className="flex gap-4 justify-center items-center">
+              <p className="font-lobster text-primaryAccent text-3xl md:hidden">
+                LB
+              </p>
+              <div className="flex w-1/3 px-10">
+                <Balance />
+              </div>
             </div>
             <div
               className="block md:hidden"

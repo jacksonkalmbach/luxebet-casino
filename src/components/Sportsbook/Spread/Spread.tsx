@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addPick,
   removePick,
-  selectFullBetSlip,
+  selectBetSlipObject,
 } from "../../../store/features/sportsbook/betSlipSlice";
 import { RootState } from "../../../store/store";
 
@@ -13,24 +13,28 @@ interface SpreadProps {
   point: number;
 }
 
+interface PickObject {
+  team: string;
+  spread: number;
+  price: number;
+}
+
 export default function Spread({ team, price, point }: SpreadProps) {
   const dispatch = useDispatch();
-  const picksArray = useSelector((state: RootState) =>
-    selectFullBetSlip(state)
+  const picksObject = useSelector((state: RootState) =>
+    selectBetSlipObject(state)
   );
+
   const [isSelected, setIsSelected] = useState(false);
 
   useEffect(() => {
-    const existsInPicks = picksArray.some(
-      (pick) =>
-        pick.team === team &&
-        pick.price === price &&
-        pick.point === point &&
-        pick.betType === "Spread"
-    );
-
-    setIsSelected(existsInPicks);
-  }, [picksArray, team, price, point]);
+    const key = `${team}-${"Spread"}-${price}`;
+    if (picksObject[key]) {
+      setIsSelected(true);
+    } else {
+      setIsSelected(false);
+    }
+  }, [team, price, picksObject]);
 
   const handleClick = () => {
     if (isSelected) {

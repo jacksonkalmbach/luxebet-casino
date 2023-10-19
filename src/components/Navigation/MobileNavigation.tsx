@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import CloseIcon from "../../icons/CloseIcon";
 import { setShowMobileNav } from "../../store/features/general/navigationSlice";
 import {
   selectUserLoginStatus,
@@ -36,13 +37,7 @@ const navlinks = [
   },
 ];
 
-interface MobileNavigationProps {
-  handleShowMobileNav: (path: string) => void;
-}
-
-export default function MobileNavigation({
-  handleShowMobileNav,
-}: MobileNavigationProps) {
+export default function MobileNavigation() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -97,7 +92,10 @@ export default function MobileNavigation({
         isOpen ? "w-2/3 flex flex-col p-8" : "w-0 "
       } h-full transition-all duration-200 overflow-auto`}
     >
-      <div className="flex flex-col w-full justify-start items-center mb-5 md:hidden">
+      <div onClick={() => dispatch(setShowMobileNav(false))}>
+        <CloseIcon color="black" />
+      </div>
+      <div className="flex flex-col w-full justify-start items-center mb-5 md:hidden z-40">
         <Logo variant="secondary" />
       </div>
       <div className={`${isOpen ? "flex flex-col gap-3" : "hidden"}`}>
