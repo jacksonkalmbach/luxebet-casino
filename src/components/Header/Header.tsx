@@ -5,25 +5,17 @@ import { useSelector, useDispatch } from "react-redux";
 import Logo from "../Logo/Logo";
 import Balance from "../Balance/Balance";
 import ChevronDownIcon from "../../icons/ChevronDownIcon";
+import HamburgerIcon from "../../icons/HamburgerIcon";
+import MobileNavigation from "../Navigation/MobileNavigation";
+import Dropdown from "../Dropdown/Dropdown";
 
 import {
-  selectUserBalance,
   selectUserLoginStatus,
-  setUserLogIn,
   selectUsername,
 } from "../../store/features/user/userSlice";
 
-import {
-  selectShowMobileNav,
-  setShowMobileNav,
-} from "../../store/features/general/navigationSlice";
-
+import { setShowMobileNav } from "../../store/features/general/navigationSlice";
 import { RootState } from "../../store/store";
-import HamburgerIcon from "../../icons/HamburgerIcon";
-
-import { guestUsernames } from "../../utils/guest/guestUsernames";
-import MobileNavigation from "../Navigation/MobileNavigation";
-import Dropdown from "../Dropdown/Dropdown";
 
 export default function Header() {
   const location = useLocation();
@@ -41,13 +33,6 @@ export default function Header() {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleShowMobileNav = (path?: string) => {
-    if (path) {
-      navigate(path);
-    }
-    setShowMobileNav(!showMobileNav);
   };
 
   return (

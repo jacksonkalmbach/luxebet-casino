@@ -2,12 +2,11 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
-import { MatchUpType } from "../../types/Sportsbook/MatchUpType";
-
 import BetSlip from "./BetSlip/BetSlip";
 import MatchUp from "../../components/Sportsbook/MatchUp/MatchUp";
 import MatchUpSkeleton from "../../components/Sportsbook/MatchUp/MatchUpSkeleton";
 
+import { MatchUpType } from "../../types/Sportsbook/MatchUpType";
 const SPORTS_API_KEY = process.env.REACT_APP_SPORTS_API_KEY;
 
 const options = {

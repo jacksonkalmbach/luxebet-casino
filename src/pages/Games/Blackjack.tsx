@@ -11,7 +11,10 @@ export default function Blackjack() {
   const navigate = useNavigate();
   const [showChips, setShowChips] = useState<boolean>(false);
   return (
-    <div className="flex w-full h-full p-4 bg-transparent">
+    <div
+      className="flex w-full p-4 bg-transparent"
+      style={{ height: "calc(100% - 80px)" }}
+    >
       <div
         className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-start items-center px-10 gap-10"
         // style={{

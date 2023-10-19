@@ -27,7 +27,10 @@ export default function TexasHoldEm() {
   };
 
   return (
-    <div className="flex w-full h-full p-4 bg-transparent">
+    <div
+      className="flex w-full p-4 bg-transparent"
+      style={{ height: "calc(100% - 80px)" }}
+    >
       {startGame ? (
         <div className="relative flex flex-col w-full h-full bg-secondaryBg rounded-2xl justify-center items-center overflow-hidden">
           <div className="absolute top-5 left-10 cursor-pointer active:scale-95">
