@@ -19,6 +19,11 @@ export default function MyBets() {
   const filteredBets = placedBets.filter((bet) => {
     if (filterBy === "ALL") {
       return true;
+    } else if (filterBy === "SETTLED") {
+      return (
+        bet.status?.toUpperCase() === "WON" ||
+        bet.status?.toUpperCase() === "LOST"
+      );
     } else if (bet.status) {
       return bet.status.toUpperCase() === filterBy;
     }

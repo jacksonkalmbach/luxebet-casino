@@ -60,7 +60,7 @@ const betSlipSlice = createSlice({
         const key = `${team}-${betType}-${price}`;
         const pickWithDate = {
           ...pick,
-          status: "Open",
+          status: "Lost",
           datePlaced: currentDate,
           wager: wagers[key],
         };
