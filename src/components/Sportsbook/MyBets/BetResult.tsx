@@ -1,6 +1,6 @@
 import React from "react";
 
-import { calculatePayout } from "../../../pages/Sportsbook/BetSlip/utils/calculatePayout";
+import { calculatePayout } from "../../BetSlip/utils/calculatePayout";
 
 // type ResultType = "Won" | "Lost" | "Open";
 

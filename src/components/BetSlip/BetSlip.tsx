@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectUserBalance } from "../../../store/features/game/userGameSlice";
+import { selectUserBalance } from "../../store/features/game/userGameSlice";
 import {
   selectFullBetSlip,
   clearBetSlip,
   placeBet,
-} from "../../../store/features/sportsbook/betSlipSlice";
+} from "../../store/features/sportsbook/betSlipSlice";
 import {
   decrementUserBalance,
   selectUserLoginStatus,
-} from "../../../store/features/user/userSlice";
-import { RootState } from "../../../store/store";
+} from "../../store/features/user/userSlice";
+import { RootState } from "../../store/store";
 import Pick from "./Pick";
 
 export default function BetSlip() {

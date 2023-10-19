@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
-import BetSlip from "./BetSlip/BetSlip";
+import BetSlip from "../../components/BetSlip/BetSlip";
 import MatchUp from "../../components/Sportsbook/MatchUp/MatchUp";
 import MatchUpSkeleton from "../../components/Sportsbook/MatchUp/MatchUpSkeleton";
 

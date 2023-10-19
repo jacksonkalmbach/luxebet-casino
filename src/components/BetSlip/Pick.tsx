@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { removePick } from "../../../store/features/sportsbook/betSlipSlice";
-import CloseIcon from "../../../icons/CloseIcon";
+import { removePick } from "../../store/features/sportsbook/betSlipSlice";
+import CloseIcon from "../../icons/CloseIcon";
 import { calculatePayout } from "./utils/calculatePayout";
 
 interface PickProps {
