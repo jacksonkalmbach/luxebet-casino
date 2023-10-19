@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import WalletIcon from "../../icons/WalletIcon";
 
-import { selectUserBalance } from "../../store/features/game/userGameSlice";
+import { selectUserBalance } from "../../store/features/user/userSlice";
 import { RootState } from "../../store/store";
 
 export default function Balance() {

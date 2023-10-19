@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Logo from "../../components/Logo/Logo";
 import { setShowMobileNav } from "../../store/features/general/navigationSlice";
 import {
+  incrementUserBalance,
   selectUserBalance,
-  incrementUserBalanceByAmount,
-} from "../../store/features/game/userGameSlice";
+} from "../../store/features/user/userSlice";
+
 import { RootState } from "../../store/store";
 
 const amounts: number[] = [25, 50, 100, 250];
@@ -26,7 +27,7 @@ export default function Deposit() {
   const handleMakeDeposit = async (amount: number) => {
     setIsLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    dispatch(incrementUserBalanceByAmount(amount));
+    dispatch(incrementUserBalance(amount));
     setIsLoading(false);
     setIsSuccessfulDeposit(true);
   };

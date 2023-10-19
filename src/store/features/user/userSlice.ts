@@ -20,6 +20,7 @@ const userSlice = createSlice({
       state.balance += action.payload;
     },
     decrementUserBalance(state, action: PayloadAction<number>) {
+      console.log(action.payload);
       state.balance -= action.payload;
     },
     setUserLogIn(state, action: PayloadAction<boolean>) {

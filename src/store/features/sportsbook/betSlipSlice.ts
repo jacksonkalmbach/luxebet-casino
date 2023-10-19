@@ -53,14 +53,13 @@ const betSlipSlice = createSlice({
       const currentDate = new Date().toLocaleString();
 
       const { picks, wagers } = action.payload;
-      console.log(wagers);
 
       picks.forEach((pick: BetSlipPick) => {
         const { team, betType, price } = pick;
         const key = `${team}-${betType}-${price}`;
         const pickWithDate = {
           ...pick,
-          status: "Lost",
+          status: "Open",
           datePlaced: currentDate,
           wager: wagers[key],
         };
