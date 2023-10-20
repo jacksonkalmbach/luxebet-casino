@@ -13,16 +13,16 @@ export default function TableCards() {
   const [flopCards, setFlopCards] = useState<CardDetail[] | undefined>();
   const [turnCard, setTurnCard] = useState<CardDetail[] | undefined>();
   const [riverCard, setRiverCard] = useState<CardDetail[] | undefined>();
-  const [cardsOnTable, setCardsOnTable] = useState<(CardDetail | null)[]>([
-    { suit: "C", value: 10, display_value: "10" },
-    { suit: "D", value: 2, display_value: "2" },
-    { suit: "H", value: 7, display_value: "7" },
-    { suit: "C", value: 13, display_value: "Q" },
-    { suit: "S", value: 10, display_value: "10" },
-  ]);
-  // const [cardsOnTable, setCardsOnTable] = useState<(CardDetail | null)[]>(
-  //   Array(5).fill(null)
-  // );
+  // const [cardsOnTable, setCardsOnTable] = useState<(CardDetail | null)[]>([
+  //   { suit: "C", value: 10, display_value: "10" },
+  //   { suit: "D", value: 2, display_value: "2" },
+  //   { suit: "H", value: 7, display_value: "7" },
+  //   { suit: "C", value: 13, display_value: "Q" },
+  //   { suit: "S", value: 10, display_value: "10" },
+  // ]);
+  const [cardsOnTable, setCardsOnTable] = useState<(CardDetail | null)[]>(
+    Array(5).fill(null)
+  );
 
   useEffect(() => {
     socket.on("flop_cards", (data: any) => {

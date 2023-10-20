@@ -1,19 +1,11 @@
 import { io } from "socket.io-client";
 
-const ENDPOINT = "http://localhost:5003/";
+const ENDPOINT = "http://localhost:5004";
 const socket = io.connect(ENDPOINT);
 
 // Log successful connection
 socket.on("connect", () => {
   console.log("Connected to Server!");
-});
-
-socket.on("blind_positions", () => {
-  console.log("BLIND");
-});
-
-socket.on("test", () => {
-  console.log("test");
 });
 
 // Log any connection errors

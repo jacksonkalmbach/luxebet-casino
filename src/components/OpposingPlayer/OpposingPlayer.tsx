@@ -74,7 +74,7 @@ export default function OpposingPlayer({
                   side === "left" ? "-left-9" : "-right-9"
                 } h-24 w-24 flex rounded-full`}
               >
-                <Timer />
+                {/* <Timer /> */}
               </div>
             )}
           </>

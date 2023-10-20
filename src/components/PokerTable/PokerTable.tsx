@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import socket from "../utils/socket";
+import socket from "../../utils/socket";
 import { useSelector } from "react-redux";
 
-import OpposingPlayer from "./OpposingPlayer/OpposingPlayer";
-import Pot from "./PokerTable/Pot";
-import Dealer from "./PokerTable/Dealer";
-import UserSeat from "./PokerTable/User/UserSeat";
-import TableCards from "./PokerTable/TableCards";
-import Bets from "./PokerTable/Bets";
-import Timer from "./Timer/Timer";
+import OpposingPlayer from "../OpposingPlayer/OpposingPlayer";
+import Pot from "./Pot";
+import Dealer from "./Dealer";
+import UserSeat from "./User/UserSeat";
+import TableCards from "./TableCards";
+import Bets from "./Bets";
+import Timer from "../Timer/Timer";
 
-import feltImg from "../photos/felt.jpg";
+import feltImg from "../../photos/felt.jpg";
 
-import { RootState } from "../store/store";
+import { RootState } from "../../store/store";
 
 const initialSeats = {
   1: {
@@ -103,11 +103,11 @@ export default function PokerTable() {
       console.log("PLACE A BET");
     });
 
-    // return () => {
-    //   socket.off("blind_positions");
-    //   socket.off("player_cards");
-    //   socket.off("place_bet");
-    // };
+    return () => {
+      socket.off("blind_positions");
+      socket.off("player_cards");
+      socket.off("place_bet");
+    };
   }, []);
 
   return (

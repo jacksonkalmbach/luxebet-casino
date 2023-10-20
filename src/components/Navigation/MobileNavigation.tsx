@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CloseIcon from "../../icons/CloseIcon";
 import { setShowMobileNav } from "../../store/features/general/navigationSlice";
-import {
-  selectUserLoginStatus,
-  setUserLogIn,
-} from "../../store/features/user/userSlice";
-import { RootState } from "../../store/store";
+import { setUserLogIn } from "../../store/features/user/userSlice";
+
 import Logo from "../Logo/Logo";
 import Category from "../SideMenu/Category/Category";
 
@@ -22,30 +19,11 @@ const options = {
   },
 };
 
-const navlinks = [
-  {
-    title: "Texas Hold'em",
-    path: "/games/texas hold'em",
-  },
-  {
-    title: "Blackjack",
-    path: "/games/blackjack",
-  },
-  {
-    title: "Roulette",
-    path: "/games/roulette",
-  },
-];
-
 export default function MobileNavigation() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const isLoggedIn = useSelector((state: RootState) =>
-    selectUserLoginStatus(state)
-  );
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [showSubCategories, setShowSubCategories] = useState<boolean>(false);
   const [sports, setSports] = useState<string[]>([]);
   const [subCategories, setSubCategories] = useState<{
     [key: string]: { key: string; title: string }[];

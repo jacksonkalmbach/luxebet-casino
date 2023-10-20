@@ -1,7 +1,9 @@
 import React from "react";
+
 import SideMenu from "../components/SideMenu/SideMenu";
-import { Outlet } from "react-router-dom";
 import Header from "../components/Header/Header";
+
+import { Outlet } from "react-router-dom";
 
 export default function MainPage() {
   return (

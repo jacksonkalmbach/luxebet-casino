@@ -81,7 +81,7 @@ export default function Header() {
               </div>
             </div>
           </div>
-          {isOpen && <Dropdown isOpen={isOpen} setIsOpen={setIsOpen} />}
+          {isOpen && <Dropdown setIsOpen={setIsOpen} />}
         </div>
       ) : location.pathname === "/auth" ? (
         <div className="md:hidden">

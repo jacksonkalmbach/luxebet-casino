@@ -2,10 +2,9 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import MainMenu from "./MainMenu";
-
 import { selectUserLoginStatus } from "../store/features/user/userSlice";
 import { RootState } from "../store/store";
+import MainMenu from "./MainMenu";
 
 export default function StartPage() {
   const navigate = useNavigate();

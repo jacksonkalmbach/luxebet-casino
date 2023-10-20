@@ -5,7 +5,6 @@ import CloseIcon from "../icons/CloseIcon";
 import pokerImg from "../photos/poker-bg.webp";
 import rouletteImg from "../photos/roulette-wheel.jpg";
 import blackjackImg from "../photos/blackjack.png";
-import BuiltBy from "../components/BuiltBy/BuildBy";
 
 const SPORTS_API_KEY = process.env.REACT_APP_SPORTS_API_KEY;
 
