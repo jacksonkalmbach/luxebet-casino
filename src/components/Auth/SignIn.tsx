@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
@@ -6,6 +5,7 @@ import GoogleIcon from "../../icons/GoogleIcon";
 
 import { setUserLogIn, setUserName } from "../../store/features/user/userSlice";
 import { guestUsernames } from "../../utils/guest/guestUsernames";
+import { signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
 
 export default function SignIn({ handleToggle }: { handleToggle: () => void }) {
   const dispatch = useDispatch();
@@ -19,6 +19,19 @@ export default function SignIn({ handleToggle }: { handleToggle: () => void }) {
       )
     );
     navigate("/");
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const { user } = await signInWithGooglePopup();
+      dispatch(setUserLogIn(true));
+      if (user.displayName) {
+        dispatch(setUserName(user.displayName));
+      }
+      navigate("/");
+    } catch (error) {
+      console.log("Error signing in with Google", error);
+    }
   };
 
   return (
@@ -45,7 +58,12 @@ export default function SignIn({ handleToggle }: { handleToggle: () => void }) {
           Continue as guest
         </p>
         <p className="text-[#CCCCCC]">- OR -</p>
-        <button className="w-full h-10 rounded-lg bg-gray-300 text-black font-bold flex justify-center items-center gap-4">
+      </form>
+      <div className="flex flex-col gap-2 w-full md:w-4/5 items-center">
+        <button
+          className="w-full h-10 rounded-lg bg-gray-300 text-black font-bold flex justify-center items-center gap-4"
+          onClick={handleGoogleSignIn}
+        >
           <GoogleIcon width="24px" /> Sign In With Google
         </button>
         <div className="flex gap-2">
@@ -57,7 +75,7 @@ export default function SignIn({ handleToggle }: { handleToggle: () => void }) {
             Sign Up
           </p>
         </div>
-      </form>
+      </div>
     </div>
   );
 }

@@ -1,11 +1,32 @@
-import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import GoogleIcon from "../../icons/GoogleIcon";
+import { signInWithGooglePopup } from "../../utils/firebase/firebase.utils";
+import { setUserLogIn, setUserName } from "../../store/features/user/userSlice";
 
 export default function SignUp({ handleToggle }: { handleToggle: () => void }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSubmit = () => {
+    console.log("sign up");
+  };
+  const handleGoogleSignUp = async () => {
+    try {
+      const { user } = await signInWithGooglePopup();
+      if (user.displayName) {
+        dispatch(setUserName(user.displayName));
+        dispatch(setUserLogIn(true));
+        navigate("/");
+      }
+    } catch (error) {}
+  };
   return (
     <div className="flex flex-col md:bg-secondaryBg w-full h-full md:h-2/3 md:w-1/2 rounded-lg p-8 justify-start items-center gap-4 font-oneset md:justify-center">
       <h1 className="text-fontLight text-2xl font-bold">Sign Up</h1>
-      <form className="flex flex-col gap-2 w-full md:w-4/5 items-center">
+      <form
+        className="flex flex-col gap-2 w-full md:w-4/5 items-center"
+        onSubmit={handleSubmit}
+      >
         <input
           className="w-full h-10 rounded-lg p-2"
           placeholder="Email Address"
@@ -24,8 +45,13 @@ export default function SignUp({ handleToggle }: { handleToggle: () => void }) {
         <button className="w-full h-10 rounded-lg bg-yellow-300 text-black font-bold">
           Register
         </button>
+      </form>
+      <div className="flex flex-col gap-2 w-full md:w-4/5 items-center">
         <p className="text-[#CCCCCC]">- OR -</p>
-        <button className="w-full h-10 rounded-lg bg-gray-300 text-black font-bold flex justify-center items-center gap-4">
+        <button
+          className="w-full h-10 rounded-lg bg-gray-300 text-black font-bold flex justify-center items-center gap-4"
+          onClick={handleGoogleSignUp}
+        >
           <GoogleIcon width="24px" /> Continue With Google
         </button>
         <div className="flex gap-2">
@@ -37,7 +63,7 @@ export default function SignUp({ handleToggle }: { handleToggle: () => void }) {
             Sign In
           </p>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
